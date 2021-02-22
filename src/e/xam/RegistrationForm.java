@@ -37,11 +37,11 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        firstNameField = new javax.swing.JTextField();
-        lastNameField = new javax.swing.JTextField();
-        emailField = new javax.swing.JTextField();
-        otpField = new javax.swing.JTextField();
-        mobileField = new javax.swing.JTextField();
+        NameField = new javax.swing.JTextField();
+        rollNoField = new javax.swing.JTextField();
+        MobileField = new javax.swing.JTextField();
+        depField = new javax.swing.JTextField();
+        semField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -50,7 +50,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         signUpButton = new javax.swing.JButton();
         LogInButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -76,9 +75,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(254, 254, 254));
         jLabel4.setText("You should not give up and ");
 
-        jLabel1.setFont(new java.awt.Font("DejaVu Serif", 1, 60)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 60)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setText("E-Xam");
+        jLabel1.setText("E-XAM");
 
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(254, 254, 254));
@@ -132,60 +131,60 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(30, 61, 89));
         jLabel5.setText("Create Your Account");
 
-        firstNameField.setBackground(new java.awt.Color(254, 254, 254));
-        firstNameField.setForeground(new java.awt.Color(0, 0, 0));
-        firstNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        firstNameField.addActionListener(new java.awt.event.ActionListener() {
+        NameField.setBackground(new java.awt.Color(254, 254, 254));
+        NameField.setForeground(new java.awt.Color(0, 0, 0));
+        NameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstNameFieldActionPerformed(evt);
+                NameFieldActionPerformed(evt);
             }
         });
 
-        lastNameField.setBackground(new java.awt.Color(254, 254, 254));
-        lastNameField.setForeground(new java.awt.Color(0, 0, 0));
-        lastNameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        rollNoField.setBackground(new java.awt.Color(254, 254, 254));
+        rollNoField.setForeground(new java.awt.Color(0, 0, 0));
+        rollNoField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
 
-        emailField.setBackground(new java.awt.Color(254, 254, 254));
-        emailField.setForeground(new java.awt.Color(0, 0, 0));
-        emailField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        emailField.addActionListener(new java.awt.event.ActionListener() {
+        MobileField.setBackground(new java.awt.Color(254, 254, 254));
+        MobileField.setForeground(new java.awt.Color(0, 0, 0));
+        MobileField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        MobileField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFieldActionPerformed(evt);
+                MobileFieldActionPerformed(evt);
             }
         });
 
-        otpField.setBackground(new java.awt.Color(254, 254, 254));
-        otpField.setForeground(new java.awt.Color(0, 0, 0));
-        otpField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        otpField.addActionListener(new java.awt.event.ActionListener() {
+        depField.setBackground(new java.awt.Color(254, 254, 254));
+        depField.setForeground(new java.awt.Color(0, 0, 0));
+        depField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        depField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                otpFieldActionPerformed(evt);
+                depFieldActionPerformed(evt);
             }
         });
 
-        mobileField.setBackground(new java.awt.Color(254, 254, 254));
-        mobileField.setForeground(new java.awt.Color(0, 0, 0));
-        mobileField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        mobileField.addActionListener(new java.awt.event.ActionListener() {
+        semField.setBackground(new java.awt.Color(254, 254, 254));
+        semField.setForeground(new java.awt.Color(0, 0, 0));
+        semField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        semField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mobileFieldActionPerformed(evt);
+                semFieldActionPerformed(evt);
             }
         });
 
         jLabel7.setForeground(new java.awt.Color(63, 64, 66));
-        jLabel7.setText("First Name");
+        jLabel7.setText("Name");
 
         jLabel8.setForeground(new java.awt.Color(63, 64, 66));
-        jLabel8.setText("Last name");
+        jLabel8.setText("Roll number");
 
         jLabel9.setForeground(new java.awt.Color(63, 64, 66));
-        jLabel9.setText("Mobile no.");
+        jLabel9.setText("Semester");
 
         jLabel10.setForeground(new java.awt.Color(63, 64, 66));
-        jLabel10.setText("OTP");
+        jLabel10.setText("Department");
 
         jLabel11.setForeground(new java.awt.Color(63, 64, 66));
-        jLabel11.setText("Email ");
+        jLabel11.setText("Mobile Number");
 
         signUpButton.setBackground(new java.awt.Color(30, 61, 89));
         signUpButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
@@ -198,9 +197,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         LogInButton.setText("Log In");
 
         jLabel15.setText("or");
-
-        jLabel12.setForeground(new java.awt.Color(0, 142, 255));
-        jLabel12.setText("Already have a account?");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -221,29 +217,29 @@ public class RegistrationForm extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel11)
                                         .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(emailField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel10)
-                                        .addGap(171, 171, 171))
+                                    .addComponent(MobileField, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
                                                     .addComponent(jLabel7)
-                                                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(NameField)
+                                                        .addComponent(semField))
+                                                    .addGap(18, 18, 18)))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(mobileField)
-                                                .addGap(18, 18, 18)))
+                                                .addComponent(jLabel9)
+                                                .addGap(154, 154, 154)))
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(otpField)
+                                            .addComponent(jLabel10)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, Short.MAX_VALUE)
                                                 .addComponent(jLabel8)
                                                 .addGap(130, 130, 130))
-                                            .addComponent(lastNameField))))))
+                                            .addComponent(rollNoField)
+                                            .addComponent(depField))))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -256,10 +252,7 @@ public class RegistrationForm extends javax.swing.JFrame {
                                 .addGap(160, 160, 160))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
-                                .addGap(221, 221, 221))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(144, 144, 144))))))
+                                .addGap(221, 221, 221))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,29 +266,27 @@ public class RegistrationForm extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rollNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(otpField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(semField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(depField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addComponent(MobileField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86)
                 .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LogInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel12)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,21 +304,21 @@ public class RegistrationForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void firstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameFieldActionPerformed
+    private void NameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_firstNameFieldActionPerformed
+    }//GEN-LAST:event_NameFieldActionPerformed
 
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+    private void MobileFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MobileFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldActionPerformed
+    }//GEN-LAST:event_MobileFieldActionPerformed
 
-    private void otpFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpFieldActionPerformed
+    private void depFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_otpFieldActionPerformed
+    }//GEN-LAST:event_depFieldActionPerformed
 
-    private void mobileFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mobileFieldActionPerformed
+    private void semFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_semFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mobileFieldActionPerformed
+    }//GEN-LAST:event_semFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,12 +357,12 @@ public class RegistrationForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LogInButton;
-    private javax.swing.JTextField emailField;
-    private javax.swing.JTextField firstNameField;
+    private javax.swing.JTextField MobileField;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JTextField depField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -384,9 +375,8 @@ public class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField lastNameField;
-    private javax.swing.JTextField mobileField;
-    private javax.swing.JTextField otpField;
+    private javax.swing.JTextField rollNoField;
+    private javax.swing.JTextField semField;
     private javax.swing.JButton signUpButton;
     // End of variables declaration//GEN-END:variables
 }
