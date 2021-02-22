@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
 public final class RegistrationForm extends javax.swing.JFrame {
    
     Connection con;
+    String OTP,mobile,name,semester,department;//OTP for generate otp and mob - dep for store from field
+    int verifyOtpFlag = 0;
+    
     
     public RegistrationForm() {
         initComponents();
@@ -64,6 +67,10 @@ public final class RegistrationForm extends javax.swing.JFrame {
         signUpButton = new javax.swing.JButton();
         LogInButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        otpField = new javax.swing.JTextField();
+        sendOtpButton = new javax.swing.JButton();
+        verifyButton = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -217,6 +224,32 @@ public final class RegistrationForm extends javax.swing.JFrame {
 
         jLabel15.setText("or");
 
+        otpField.setBackground(new java.awt.Color(254, 254, 254));
+        otpField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(63, 64, 66), 1, true));
+
+        sendOtpButton.setBackground(new java.awt.Color(30, 61, 89));
+        sendOtpButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        sendOtpButton.setForeground(new java.awt.Color(254, 254, 254));
+        sendOtpButton.setText("Send OTP");
+        sendOtpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendOtpButtonActionPerformed(evt);
+            }
+        });
+
+        verifyButton.setBackground(new java.awt.Color(30, 61, 89));
+        verifyButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        verifyButton.setForeground(new java.awt.Color(254, 254, 254));
+        verifyButton.setText("Verify ");
+        verifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verifyButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setForeground(new java.awt.Color(63, 64, 66));
+        jLabel12.setText("OTP");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -233,10 +266,6 @@ public final class RegistrationForm extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(mobileField, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,20 +287,36 @@ public final class RegistrationForm extends javax.swing.JFrame {
                                                 .addComponent(jLabel8)
                                                 .addGap(130, 130, 130))
                                             .addComponent(rollNoField)
-                                            .addComponent(depField))))))
+                                            .addComponent(depField)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel11))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(jLabel12)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(otpField))))))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(160, 160, 160))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(LogInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(160, 160, 160))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
-                                .addGap(221, 221, 221))))))
+                                .addGap(221, 221, 221))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(160, 160, 160))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(sendOtpButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(verifyButton)
+                        .addGap(86, 86, 86))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,16 +341,24 @@ public final class RegistrationForm extends javax.swing.JFrame {
                     .addComponent(semField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(depField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
-                .addComponent(jLabel11)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mobileField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(otpField, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(mobileField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sendOtpButton)
+                    .addComponent(verifyButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LogInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 41, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,34 +393,71 @@ public final class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_semFieldActionPerformed
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
-        try{ 
-            String name = nameField.getText();
-            int rollNo = Integer.parseInt(rollNoField.getText()); 
-            String semester = semField.getText();
-            String department = depField.getText();
-            String mobile = mobileField.getText();
+        if(verifyOtpFlag == 1){
+              try{
             
-            PreparedStatement ps = (PreparedStatement) con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
+                    name = nameField.getText();
+                    int rollNo = Integer.parseInt(rollNoField.getText()); 
+                    semester = semField.getText();
+                    department = depField.getText();
+                    mobile = mobileField.getText();
             
-            ps.setString(1, name);
-            ps.setInt(2, rollNo);
-            ps.setString(3, semester);
-            ps.setString(4, department);
-            ps.setString(5, mobile);
-            int k = ps.executeUpdate();
-            if(k == 1){
-                OtpForm otpForm = new OtpForm();
-                otpForm.setVisible(true);
-            }else{
-                JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");
-            }
-            } catch (SQLException ex) {
-            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+                    //Insert values into table studentDetails in database E-xam 
+                    PreparedStatement ps = (PreparedStatement) con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
+            
+                    ps.setString(1, name);
+                    ps.setInt(2, rollNo);
+                    ps.setString(3, semester);
+                    ps.setString(4, department);
+                    ps.setString(5, mobile);
+                    int k = ps.executeUpdate();
+            
+            
+                    if(k == 1){//Check whether added to database
+                        dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");
+                    }
+           
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+                }  
         }
+        
         
         
        
     }//GEN-LAST:event_signUpButtonActionPerformed
+
+    private void sendOtpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendOtpButtonActionPerformed
+        OtpGenerator otpGenerator = new OtpGenerator();
+                
+                OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
+                
+                System.out.println("OTP="+OTP);
+                
+                /*String apiKey = "NYudIasHf34BmDlFXEOb1zRALQyxStv0TZoi9M26PqVpe8cKCJrQ4KOMgSEkjcoeanzDmp3fTqZA92NH";//API key of free2sms
+                
+                OtpVerification otpVerification = new OtpVerification();
+                otpVerification.OtpVerification("Hey "+name+"\n your OTP for E-Xam is "+OTP+".Don't share it with anyone.",mobile,apiKey);//For send 
+                */
+                JOptionPane.showMessageDialog(this, "OTP sended successfully");
+    }//GEN-LAST:event_sendOtpButtonActionPerformed
+
+    private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
+        //Function for verify otp
+        String OTPCheck = otpField.getText();//user entered OTP
+        
+        System.out.println("OTP in ver ="+OTP);
+        System.out.println(OTPCheck);
+        if(OTPCheck.equals(OTP)){
+            verifyOtpFlag = 1;
+            JOptionPane.showMessageDialog(this, "Your mobile number verified");
+        }else{
+            JOptionPane.showMessageDialog(this, "Please Enter valid OTP");
+        }
+        
+    }//GEN-LAST:event_verifyButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,6 +496,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -420,8 +511,11 @@ public final class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField mobileField;
     private javax.swing.JTextField nameField;
+    private javax.swing.JTextField otpField;
     private javax.swing.JTextField rollNoField;
     private javax.swing.JTextField semField;
+    private javax.swing.JButton sendOtpButton;
     private javax.swing.JButton signUpButton;
+    private javax.swing.JButton verifyButton;
     // End of variables declaration//GEN-END:variables
 }
