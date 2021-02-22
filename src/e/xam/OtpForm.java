@@ -115,7 +115,7 @@ public class OtpForm extends javax.swing.JFrame {
         jLabel7.setText("We are send an otp to your number please");
 
         jLabel8.setForeground(new java.awt.Color(63, 64, 66));
-        jLabel8.setText("enter the OTP below and  verify,");
+        jLabel8.setText("enter the OTP above and  verify,");
 
         otpField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(63, 64, 66)));
         otpField.addActionListener(new java.awt.event.ActionListener() {
