@@ -15,7 +15,7 @@ public class LoginForm extends javax.swing.JFrame {
     String user = "root";
     String password;
     String OTP; //for Generate OTP
-    int flagForUserExist = 0;//in function send otp action performed to check whether user exist;
+    boolean verifyOtpFlag = false;//in function verifybuttonactionperformed to check whether otp is correct ;
     
     
     RegistrationForm regForm = new RegistrationForm();
@@ -141,6 +141,11 @@ public class LoginForm extends javax.swing.JFrame {
         signUpButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         signUpButton.setForeground(new java.awt.Color(254, 254, 254));
         signUpButton.setText("Sign Up");
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("or");
 
@@ -164,6 +169,11 @@ public class LoginForm extends javax.swing.JFrame {
         verifyButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         verifyButton.setForeground(new java.awt.Color(254, 254, 254));
         verifyButton.setText("Verify");
+        verifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verifyButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -298,6 +308,21 @@ public class LoginForm extends javax.swing.JFrame {
         }
             
     }//GEN-LAST:event_sendOtpButtonActionPerformed
+
+    private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
+        String OTPCheck = otpField.getText();
+        if(OTPCheck.equals(OTP)){
+            JOptionPane.showMessageDialog(this, "Otp verified Successfully");
+        }else{
+            JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
+            otpField.setText("");
+        }
+    }//GEN-LAST:event_verifyButtonActionPerformed
+
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+        regForm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_signUpButtonActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
