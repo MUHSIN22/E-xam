@@ -34,8 +34,10 @@ public final class RegistrationForm extends javax.swing.JFrame {
         try{
             Class.forName("com.mysql.jdbc.Driver");
             con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","newpassword");
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println("Database connection error"+e);
+        }catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -65,7 +67,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         signUpButton = new javax.swing.JButton();
-        LogInButton = new javax.swing.JButton();
+        logInButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         otpField = new javax.swing.JTextField();
         sendOtpButton = new javax.swing.JButton();
@@ -217,10 +219,15 @@ public final class RegistrationForm extends javax.swing.JFrame {
             }
         });
 
-        LogInButton.setBackground(new java.awt.Color(30, 61, 89));
-        LogInButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        LogInButton.setForeground(new java.awt.Color(254, 254, 254));
-        LogInButton.setText("Log In");
+        logInButton.setBackground(new java.awt.Color(30, 61, 89));
+        logInButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        logInButton.setForeground(new java.awt.Color(254, 254, 254));
+        logInButton.setText("Log In");
+        logInButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonActionPerformed(evt);
+            }
+        });
 
         jLabel15.setText("or");
 
@@ -303,7 +310,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(LogInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(160, 160, 160))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel15)
@@ -357,7 +364,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LogInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
         );
 
@@ -403,7 +410,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
                     mobile = mobileField.getText();
             
                     //Insert values into table studentDetails in database E-xam 
-                    PreparedStatement ps = (PreparedStatement) con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
+                    PreparedStatement ps = con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
             
                     ps.setString(1, name);
                     ps.setInt(2, rollNo);
@@ -430,18 +437,18 @@ public final class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void sendOtpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendOtpButtonActionPerformed
-        OtpGenerator otpGenerator = new OtpGenerator();
+            OtpGenerator otpGenerator = new OtpGenerator();
                 
-                OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
+            OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
                 
-                System.out.println("OTP="+OTP);
+            System.out.println("OTP="+OTP);
                 
-                /*String apiKey = "NYudIasHf34BmDlFXEOb1zRALQyxStv0TZoi9M26PqVpe8cKCJrQ4KOMgSEkjcoeanzDmp3fTqZA92NH";//API key of free2sms
+            /*String apiKey = "NYudIasHf34BmDlFXEOb1zRALQyxStv0TZoi9M26PqVpe8cKCJrQ4KOMgSEkjcoeanzDmp3fTqZA92NH";//API key of free2sms
                 
-                OtpVerification otpVerification = new OtpVerification();
-                otpVerification.OtpVerification("Hey "+name+"\n your OTP for E-Xam is "+OTP+".Don't share it with anyone.",mobile,apiKey);//For send 
-                */
-                JOptionPane.showMessageDialog(this, "OTP sended successfully");
+            OtpVerification otpVerification = new OtpVerification();
+            otpVerification.OtpVerification("Hey "+name+"\n your OTP for E-Xam is "+OTP+".Don't share it with anyone.",mobile,apiKey);//For send 
+            */
+            JOptionPane.showMessageDialog(this, "OTP sended successfully");
     }//GEN-LAST:event_sendOtpButtonActionPerformed
 
     private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
@@ -459,9 +466,13 @@ public final class RegistrationForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_verifyButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
+        LoginForm loginForm = new LoginForm();
+        loginForm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_logInButtonActionPerformed
+
+    
     public static void main(String args[]) {
         
         try {
@@ -491,7 +502,6 @@ public final class RegistrationForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton LogInButton;
     private javax.swing.JTextField depField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -509,6 +519,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton logInButton;
     private javax.swing.JTextField mobileField;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField otpField;
