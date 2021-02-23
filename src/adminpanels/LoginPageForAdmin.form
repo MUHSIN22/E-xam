@@ -6,7 +6,6 @@
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[954, 585]"/>
     </Property>
-    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -60,8 +59,8 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" min="-2" pref="286" max="-2" attributes="0"/>
-                                      <Component id="jTextField2" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
+                                      <Component id="Txtloginmobile" min="-2" pref="286" max="-2" attributes="0"/>
+                                      <Component id="TxtloginOtp" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
@@ -73,8 +72,8 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="signUpButton" min="-2" pref="163" max="-2" attributes="0"/>
-                                      <Component id="logInButton" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="signUpButtonadmin" min="-2" pref="163" max="-2" attributes="0"/>
+                                      <Component id="logInButtonadmin" min="-2" pref="163" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -97,17 +96,17 @@
                   <EmptySpace pref="68" max="32767" attributes="0"/>
                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField1" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="Txtloginmobile" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextField2" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="TxtloginOtp" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                  <Component id="logInButton" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="logInButtonadmin" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" pref="14" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="signUpButton" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="signUpButtonadmin" min="-2" pref="58" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -276,11 +275,17 @@
             <Property name="text" type="java.lang.String" value="or"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="Txtloginmobile">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtloginmobileActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField2">
+        <Component class="javax.swing.JTextField" name="TxtloginOtp">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxtloginOtpActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="signUpButton">
+        <Component class="javax.swing.JButton" name="signUpButtonadmin">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="59" green="3d" red="1e" type="rgb"/>
@@ -294,10 +299,10 @@
             <Property name="text" type="java.lang.String" value="Sign Up"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpButtonadminActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="logInButton">
+        <Component class="javax.swing.JButton" name="logInButtonadmin">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="59" green="3d" red="1e" type="rgb"/>
@@ -311,7 +316,7 @@
             <Property name="text" type="java.lang.String" value="Log In"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logInButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logInButtonadminActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

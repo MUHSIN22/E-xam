@@ -39,14 +39,13 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        signUpButton = new javax.swing.JButton();
-        logInButton = new javax.swing.JButton();
+        Txtloginmobile = new javax.swing.JTextField();
+        TxtloginOtp = new javax.swing.JTextField();
+        signUpButtonadmin = new javax.swing.JButton();
+        logInButtonadmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(954, 585));
-        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,23 +130,35 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
 
         jLabel7.setText("or");
 
-        signUpButton.setBackground(new java.awt.Color(30, 61, 89));
-        signUpButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        signUpButton.setForeground(new java.awt.Color(254, 254, 254));
-        signUpButton.setText("Sign Up");
-        signUpButton.addActionListener(new java.awt.event.ActionListener() {
+        Txtloginmobile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonActionPerformed(evt);
+                TxtloginmobileActionPerformed(evt);
             }
         });
 
-        logInButton.setBackground(new java.awt.Color(30, 61, 89));
-        logInButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        logInButton.setForeground(new java.awt.Color(254, 254, 254));
-        logInButton.setText("Log In");
-        logInButton.addActionListener(new java.awt.event.ActionListener() {
+        TxtloginOtp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logInButtonActionPerformed(evt);
+                TxtloginOtpActionPerformed(evt);
+            }
+        });
+
+        signUpButtonadmin.setBackground(new java.awt.Color(30, 61, 89));
+        signUpButtonadmin.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        signUpButtonadmin.setForeground(new java.awt.Color(254, 254, 254));
+        signUpButtonadmin.setText("Sign Up");
+        signUpButtonadmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonadminActionPerformed(evt);
+            }
+        });
+
+        logInButtonadmin.setBackground(new java.awt.Color(30, 61, 89));
+        logInButtonadmin.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        logInButtonadmin.setForeground(new java.awt.Color(254, 254, 254));
+        logInButtonadmin.setText("Log In");
+        logInButtonadmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logInButtonadminActionPerformed(evt);
             }
         });
 
@@ -167,8 +178,8 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Txtloginmobile, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TxtloginOtp, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13))
                                 .addGap(85, 85, 85))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -176,8 +187,8 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(150, 150, 150)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(signUpButtonadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(logInButtonadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(226, 226, 226)
                                 .addComponent(jLabel7)))
@@ -192,17 +203,17 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Txtloginmobile, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtloginOtp, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
-                .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(logInButtonadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUpButtonadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -220,13 +231,21 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
+    private void logInButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonadminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_logInButtonActionPerformed
+    }//GEN-LAST:event_logInButtonadminActionPerformed
 
-    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
+    private void signUpButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonadminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signUpButtonActionPerformed
+    }//GEN-LAST:event_signUpButtonadminActionPerformed
+
+    private void TxtloginOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtloginOtpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtloginOtpActionPerformed
+
+    private void TxtloginmobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtloginmobileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxtloginmobileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,6 +284,8 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxtloginOtp;
+    private javax.swing.JTextField Txtloginmobile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -277,9 +298,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton logInButton;
-    private javax.swing.JButton signUpButton;
+    private javax.swing.JButton logInButtonadmin;
+    private javax.swing.JButton signUpButtonadmin;
     // End of variables declaration//GEN-END:variables
 }

@@ -132,7 +132,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         jLabel5.setText("Create Your Account");
 
         NameField.setBackground(new java.awt.Color(254, 254, 254));
-        NameField.setForeground(new java.awt.Color(0, 0, 0));
         NameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         NameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,11 +140,9 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
 
         rollNoField.setBackground(new java.awt.Color(254, 254, 254));
-        rollNoField.setForeground(new java.awt.Color(0, 0, 0));
         rollNoField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
 
         MobileField.setBackground(new java.awt.Color(254, 254, 254));
-        MobileField.setForeground(new java.awt.Color(0, 0, 0));
         MobileField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         MobileField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +151,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
 
         depField.setBackground(new java.awt.Color(254, 254, 254));
-        depField.setForeground(new java.awt.Color(0, 0, 0));
         depField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         depField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +159,6 @@ public class RegistrationForm extends javax.swing.JFrame {
         });
 
         semField.setBackground(new java.awt.Color(254, 254, 254));
-        semField.setForeground(new java.awt.Color(0, 0, 0));
         semField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         semField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
