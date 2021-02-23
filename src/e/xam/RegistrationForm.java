@@ -154,30 +154,34 @@ public final class RegistrationForm extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(30, 61, 89));
         jLabel5.setText("Create Your Account");
 
+
         nameField.setBackground(new java.awt.Color(254, 254, 254));
         nameField.setForeground(new java.awt.Color(0, 0, 0));
         nameField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         nameField.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
             }
         });
 
         rollNoField.setBackground(new java.awt.Color(254, 254, 254));
-        rollNoField.setForeground(new java.awt.Color(0, 0, 0));
         rollNoField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+
+
+        
 
         mobileField.setBackground(new java.awt.Color(254, 254, 254));
         mobileField.setForeground(new java.awt.Color(0, 0, 0));
         mobileField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         mobileField.addActionListener(new java.awt.event.ActionListener() {
+>
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mobileFieldActionPerformed(evt);
             }
         });
 
         depField.setBackground(new java.awt.Color(254, 254, 254));
-        depField.setForeground(new java.awt.Color(0, 0, 0));
         depField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         depField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +190,6 @@ public final class RegistrationForm extends javax.swing.JFrame {
         });
 
         semField.setBackground(new java.awt.Color(254, 254, 254));
-        semField.setForeground(new java.awt.Color(0, 0, 0));
         semField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
         semField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
