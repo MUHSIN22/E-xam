@@ -169,6 +169,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
         rollNoField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
 
 
+
         mobileField.setBackground(new java.awt.Color(254, 254, 254));
         mobileField.setForeground(new java.awt.Color(0, 0, 0));
         mobileField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
