@@ -36,7 +36,6 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        PhoneNoFieldAdmin = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -48,7 +47,10 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         LastNameFieldAdmin = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         EmailFieldAdmin = new javax.swing.JTextField();
-        OtpFieldAdmin = new javax.swing.JTextField();
+        FirstNameFieldAdmin1 = new javax.swing.JTextField();
+        FirstNameFieldAdmin2 = new javax.swing.JTextField();
+        signUpButtonAdmin1 = new javax.swing.JButton();
+        signUpButtonAdmin2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,14 +127,6 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(30, 61, 89));
         jLabel5.setText("Create Your Account");
 
-        PhoneNoFieldAdmin.setBackground(new java.awt.Color(254, 254, 254));
-        PhoneNoFieldAdmin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        PhoneNoFieldAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PhoneNoFieldAdminActionPerformed(evt);
-            }
-        });
-
         jLabel7.setForeground(new java.awt.Color(63, 64, 66));
         jLabel7.setText("First name");
 
@@ -194,11 +188,39 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
             }
         });
 
-        OtpFieldAdmin.setBackground(new java.awt.Color(254, 254, 254));
-        OtpFieldAdmin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        OtpFieldAdmin.addActionListener(new java.awt.event.ActionListener() {
+        FirstNameFieldAdmin1.setBackground(new java.awt.Color(254, 254, 254));
+        FirstNameFieldAdmin1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        FirstNameFieldAdmin1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OtpFieldAdminActionPerformed(evt);
+                FirstFirstNameFieldAdmin1ActionPerformed(evt);
+            }
+        });
+
+        FirstNameFieldAdmin2.setBackground(new java.awt.Color(254, 254, 254));
+        FirstNameFieldAdmin2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        FirstNameFieldAdmin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstFirstNameFieldAdmin2ActionPerformed(evt);
+            }
+        });
+
+        signUpButtonAdmin1.setBackground(new java.awt.Color(30, 61, 89));
+        signUpButtonAdmin1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        signUpButtonAdmin1.setForeground(new java.awt.Color(254, 254, 254));
+        signUpButtonAdmin1.setText("send otp");
+        signUpButtonAdmin1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonAdmin1ActionPerformed(evt);
+            }
+        });
+
+        signUpButtonAdmin2.setBackground(new java.awt.Color(30, 61, 89));
+        signUpButtonAdmin2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        signUpButtonAdmin2.setForeground(new java.awt.Color(254, 254, 254));
+        signUpButtonAdmin2.setText("verify");
+        signUpButtonAdmin2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpButtonAdmin2ActionPerformed(evt);
             }
         });
 
@@ -206,60 +228,63 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel16)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 220, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(FirstNameFieldAdmin)
-                                            .addComponent(PhoneNoFieldAdmin))
-                                        .addGap(18, 18, 18)))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addGap(154, 154, 154)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(LastNameFieldAdmin)
-                                .addComponent(OtpFieldAdmin)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel15)
-                                        .addComponent(jLabel12))
-                                    .addGap(0, 188, Short.MAX_VALUE)))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(signUpButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(LogInButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(150, 150, 150))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(FirstNameFieldAdmin)
+                                .addGap(18, 18, 18)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LastNameFieldAdmin)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(19, 19, 19))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(signUpButtonAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(signUpButtonAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addGap(221, 221, 221)
+                        .addComponent(jLabel15))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(FirstNameFieldAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(FirstNameFieldAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(signUpButtonAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LogInButtonAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
-                                .addGap(211, 211, 211)))))
-                .addGap(19, 19, 19))
+                                .addGap(61, 61, 61)))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel12))
@@ -267,19 +292,23 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(FirstNameFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LastNameFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PhoneNoFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OtpFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(14, 14, 14)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                    .addComponent(FirstNameFieldAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(FirstNameFieldAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(signUpButtonAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signUpButtonAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addComponent(signUpButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
@@ -310,14 +339,6 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailFieldAdminActionPerformed
 
-    private void OtpFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OtpFieldAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OtpFieldAdminActionPerformed
-
-    private void PhoneNoFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PhoneNoFieldAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PhoneNoFieldAdminActionPerformed
-
     private void FirstFirstNameFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFirstNameFieldAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_FirstFirstNameFieldAdminActionPerformed
@@ -335,6 +356,22 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_LogInButtonAdminActionPerformed
+
+    private void FirstFirstNameFieldAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFirstNameFieldAdmin1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstFirstNameFieldAdmin1ActionPerformed
+
+    private void FirstFirstNameFieldAdmin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFirstNameFieldAdmin2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FirstFirstNameFieldAdmin2ActionPerformed
+
+    private void signUpButtonAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonAdmin1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signUpButtonAdmin1ActionPerformed
+
+    private void signUpButtonAdmin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonAdmin2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signUpButtonAdmin2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,10 +411,10 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EmailFieldAdmin;
     private javax.swing.JTextField FirstNameFieldAdmin;
+    private javax.swing.JTextField FirstNameFieldAdmin1;
+    private javax.swing.JTextField FirstNameFieldAdmin2;
     private javax.swing.JTextField LastNameFieldAdmin;
     private javax.swing.JButton LogInButtonAdmin;
-    private javax.swing.JTextField OtpFieldAdmin;
-    private javax.swing.JTextField PhoneNoFieldAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -394,5 +431,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton signUpButtonAdmin;
+    private javax.swing.JButton signUpButtonAdmin1;
+    private javax.swing.JButton signUpButtonAdmin2;
     // End of variables declaration//GEN-END:variables
 }
