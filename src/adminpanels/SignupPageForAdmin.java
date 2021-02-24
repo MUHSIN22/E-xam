@@ -170,6 +170,11 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         LogInButtonAdmin.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         LogInButtonAdmin.setForeground(new java.awt.Color(254, 254, 254));
         LogInButtonAdmin.setText("Log In");
+        LogInButtonAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LogInButtonAdminActionPerformed(evt);
+            }
+        });
 
         LastNameFieldAdmin.setBackground(new java.awt.Color(254, 254, 254));
         LastNameFieldAdmin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
@@ -324,6 +329,12 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     private void LastNameFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameFieldAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_LastNameFieldAdminActionPerformed
+
+    private void LogInButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInButtonAdminActionPerformed
+      new LoginPageForAdmin().setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_LogInButtonAdminActionPerformed
 
     /**
      * @param args the command line arguments

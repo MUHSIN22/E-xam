@@ -236,7 +236,9 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_logInButtonadminActionPerformed
 
     private void signUpButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonadminActionPerformed
-        // TODO add your handling code here:
+        new SignupPageForAdmin().setVisible(true);
+
+        this.dispose();
     }//GEN-LAST:event_signUpButtonadminActionPerformed
 
     private void TxtloginOtpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtloginOtpActionPerformed
