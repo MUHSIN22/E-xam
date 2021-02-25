@@ -18,6 +18,8 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
     boolean fieldEmpty = false;//for check any fields are empty
     String question,optionOne,optionTwo,optionThree,optionFour;//variables for save questions and options
     
+    ButtonGroup group = new ButtonGroup();
+    
     public QuestionUploadForm() throws SQLException {
         initComponents();
         connect();
@@ -79,6 +81,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
                     optionTwoInput.setText("");
                     optionThreeInput.setText("");
                     optionFourInput.setText("");
+                    group.clearSelection();
                     
                 }else{
                     JOptionPane.showMessageDialog(this, "Something went wrong\nPlease try agian!!");
@@ -111,7 +114,12 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         optionFourCheck = new javax.swing.JRadioButton();
         optionTwoCheck = new javax.swing.JRadioButton();
         Next = new javax.swing.JButton();
-
+	
+	group.add(optionOneCheck);
+	group.add(optionTwoCheck);
+	group.add(optionThreeCheck);
+	group.add(optionFourCheck);
+	
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 150, 0, 0));
 
@@ -325,34 +333,8 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_NextActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QuestionUploadForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QuestionUploadForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QuestionUploadForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QuestionUploadForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
