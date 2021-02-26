@@ -5,12 +5,14 @@
  */
 package adminpanels;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
  */
 public class SignupPageForAdmin extends javax.swing.JFrame {
-
+ String OTP;
     /**
      * Creates new form SignupPageForAdmin
      */
@@ -47,10 +49,10 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         LastNameFieldAdmin = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         EmailFieldAdmin = new javax.swing.JTextField();
-        FirstNameFieldAdmin1 = new javax.swing.JTextField();
-        FirstNameFieldAdmin2 = new javax.swing.JTextField();
-        signUpButtonAdmin1 = new javax.swing.JButton();
-        signUpButtonAdmin2 = new javax.swing.JButton();
+        mobiletxtfield = new javax.swing.JTextField();
+        otptxtfield = new javax.swing.JTextField();
+        sendotpbtn = new javax.swing.JButton();
+        verifyotpbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -188,39 +190,39 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
             }
         });
 
-        FirstNameFieldAdmin1.setBackground(new java.awt.Color(254, 254, 254));
-        FirstNameFieldAdmin1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        FirstNameFieldAdmin1.addActionListener(new java.awt.event.ActionListener() {
+        mobiletxtfield.setBackground(new java.awt.Color(254, 254, 254));
+        mobiletxtfield.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        mobiletxtfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FirstFirstNameFieldAdmin1ActionPerformed(evt);
+                FirstmobiletxtfieldActionPerformed(evt);
             }
         });
 
-        FirstNameFieldAdmin2.setBackground(new java.awt.Color(254, 254, 254));
-        FirstNameFieldAdmin2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        FirstNameFieldAdmin2.addActionListener(new java.awt.event.ActionListener() {
+        otptxtfield.setBackground(new java.awt.Color(254, 254, 254));
+        otptxtfield.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        otptxtfield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FirstFirstNameFieldAdmin2ActionPerformed(evt);
+                FirstotptxtfieldActionPerformed(evt);
             }
         });
 
-        signUpButtonAdmin1.setBackground(new java.awt.Color(30, 61, 89));
-        signUpButtonAdmin1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        signUpButtonAdmin1.setForeground(new java.awt.Color(254, 254, 254));
-        signUpButtonAdmin1.setText("send otp");
-        signUpButtonAdmin1.addActionListener(new java.awt.event.ActionListener() {
+        sendotpbtn.setBackground(new java.awt.Color(30, 61, 89));
+        sendotpbtn.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        sendotpbtn.setForeground(new java.awt.Color(254, 254, 254));
+        sendotpbtn.setText("send otp");
+        sendotpbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonAdmin1ActionPerformed(evt);
+                sendotpbtnActionPerformed(evt);
             }
         });
 
-        signUpButtonAdmin2.setBackground(new java.awt.Color(30, 61, 89));
-        signUpButtonAdmin2.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        signUpButtonAdmin2.setForeground(new java.awt.Color(254, 254, 254));
-        signUpButtonAdmin2.setText("verify");
-        signUpButtonAdmin2.addActionListener(new java.awt.event.ActionListener() {
+        verifyotpbtn.setBackground(new java.awt.Color(30, 61, 89));
+        verifyotpbtn.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        verifyotpbtn.setForeground(new java.awt.Color(254, 254, 254));
+        verifyotpbtn.setText("verify");
+        verifyotpbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpButtonAdmin2ActionPerformed(evt);
+                verifyotpbtnActionPerformed(evt);
             }
         });
 
@@ -251,9 +253,9 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addComponent(signUpButtonAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sendotpbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(signUpButtonAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(verifyotpbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,9 +268,9 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                         .addComponent(jLabel15))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(FirstNameFieldAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mobiletxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(FirstNameFieldAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(otptxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(191, 191, 191)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,12 +304,12 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FirstNameFieldAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FirstNameFieldAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mobiletxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(otptxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signUpButtonAdmin1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signUpButtonAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sendotpbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(verifyotpbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(signUpButtonAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -357,21 +359,31 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_LogInButtonAdminActionPerformed
 
-    private void FirstFirstNameFieldAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFirstNameFieldAdmin1ActionPerformed
+    private void FirstmobiletxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstmobiletxtfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FirstFirstNameFieldAdmin1ActionPerformed
+    }//GEN-LAST:event_FirstmobiletxtfieldActionPerformed
 
-    private void FirstFirstNameFieldAdmin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFirstNameFieldAdmin2ActionPerformed
+    private void FirstotptxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstotptxtfieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FirstFirstNameFieldAdmin2ActionPerformed
+    }//GEN-LAST:event_FirstotptxtfieldActionPerformed
 
-    private void signUpButtonAdmin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonAdmin1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signUpButtonAdmin1ActionPerformed
+    private void sendotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendotpbtnActionPerformed
+        OtpGenerator otpGenerator = new OtpGenerator();
+                
+                OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
+                
+                System.out.println("OTP="+OTP);
+    }//GEN-LAST:event_sendotpbtnActionPerformed
 
-    private void signUpButtonAdmin2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonAdmin2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signUpButtonAdmin2ActionPerformed
+    private void verifyotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyotpbtnActionPerformed
+                 String OTPCheck = otptxtfield.getText();
+        if(OTPCheck.equals(OTP)){
+            JOptionPane.showMessageDialog(this, "Otp verified Successfully");
+        }else{
+            JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
+            otptxtfield.setText("");
+        }
+    }//GEN-LAST:event_verifyotpbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,8 +423,6 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EmailFieldAdmin;
     private javax.swing.JTextField FirstNameFieldAdmin;
-    private javax.swing.JTextField FirstNameFieldAdmin1;
-    private javax.swing.JTextField FirstNameFieldAdmin2;
     private javax.swing.JTextField LastNameFieldAdmin;
     private javax.swing.JButton LogInButtonAdmin;
     private javax.swing.JLabel jLabel1;
@@ -430,8 +440,10 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField mobiletxtfield;
+    private javax.swing.JTextField otptxtfield;
+    private javax.swing.JButton sendotpbtn;
     private javax.swing.JButton signUpButtonAdmin;
-    private javax.swing.JButton signUpButtonAdmin1;
-    private javax.swing.JButton signUpButtonAdmin2;
+    private javax.swing.JButton verifyotpbtn;
     // End of variables declaration//GEN-END:variables
 }

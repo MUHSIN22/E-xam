@@ -206,9 +206,9 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                  <Component id="signUpButtonAdmin1" min="-2" pref="103" max="-2" attributes="0"/>
+                  <Component id="sendotpbtn" min="-2" pref="103" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="signUpButtonAdmin2" min="-2" pref="103" max="-2" attributes="0"/>
+                  <Component id="verifyotpbtn" min="-2" pref="103" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -224,9 +224,9 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="FirstNameFieldAdmin1" min="-2" pref="239" max="-2" attributes="0"/>
+                          <Component id="mobiletxtfield" min="-2" pref="239" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="FirstNameFieldAdmin2" min="-2" pref="239" max="-2" attributes="0"/>
+                          <Component id="otptxtfield" min="-2" pref="239" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
@@ -270,13 +270,13 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="FirstNameFieldAdmin1" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="FirstNameFieldAdmin2" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="mobiletxtfield" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
+                      <Component id="otptxtfield" alignment="3" min="-2" pref="53" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="signUpButtonAdmin1" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
-                      <Component id="signUpButtonAdmin2" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="sendotpbtn" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                      <Component id="verifyotpbtn" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="signUpButtonAdmin" min="-2" pref="48" max="-2" attributes="0"/>
@@ -431,7 +431,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmailFieldAdminActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="FirstNameFieldAdmin1">
+        <Component class="javax.swing.JTextField" name="mobiletxtfield">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -445,10 +445,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstFirstNameFieldAdmin1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstmobiletxtfieldActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="FirstNameFieldAdmin2">
+        <Component class="javax.swing.JTextField" name="otptxtfield">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="fe" red="fe" type="rgb"/>
@@ -462,10 +462,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstFirstNameFieldAdmin2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FirstotptxtfieldActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="signUpButtonAdmin1">
+        <Component class="javax.swing.JButton" name="sendotpbtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="59" green="3d" red="1e" type="rgb"/>
@@ -479,10 +479,10 @@
             <Property name="text" type="java.lang.String" value="send otp"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpButtonAdmin1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sendotpbtnActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="signUpButtonAdmin2">
+        <Component class="javax.swing.JButton" name="verifyotpbtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="59" green="3d" red="1e" type="rgb"/>
@@ -496,7 +496,7 @@
             <Property name="text" type="java.lang.String" value="verify"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="signUpButtonAdmin2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="verifyotpbtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
