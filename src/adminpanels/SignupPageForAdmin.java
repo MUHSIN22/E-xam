@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package adminpanels;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -13,12 +16,27 @@ import javax.swing.JOptionPane;
  */
 public class SignupPageForAdmin extends javax.swing.JFrame {
  String OTP;
+ boolean verifyOtpFlag = false;
     /**
      * Creates new form SignupPageForAdmin
      */
     public SignupPageForAdmin() {
         initComponents();
+         connect();
     }
+     Connection con;
+    PreparedStatement pst;
+     public void connect(){
+     try {
+         Class.forName("com.mysql.jdbc.Driver");
+         con= DriverManager.getConnection("jdbc:mysql://localhost/examadmin","root","Password@66");
+         
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (SQLException ex) {
+         Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -346,7 +364,33 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_FirstFirstNameFieldAdminActionPerformed
 
     private void signUpButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonAdminActionPerformed
-        // TODO add your handling code here:
+     try {
+         String firstname=FirstNameFieldAdmin.getText();
+         String lastname=LastNameFieldAdmin.getText();
+         String email=EmailFieldAdmin.getText();
+         String phone=mobiletxtfield.getText();
+         
+         pst =con.prepareStatement("insert into signupforadmin(firstname,lastname,email,phone)values(?,?,?,?)");
+         pst.setString(1, firstname);
+         pst.setString(2, lastname);
+         pst.setString(3, email);
+         pst.setString(4, phone);
+         int k=pst.executeUpdate();
+         
+         if (k==1){
+             JOptionPane.showMessageDialog(this,"record added successfully");
+             FirstNameFieldAdmin.setText("");
+             LastNameFieldAdmin.setText("");
+             EmailFieldAdmin.setText("");
+             mobiletxtfield.setText("");
+             FirstNameFieldAdmin.requestFocus();
+             
+         }else{
+             JOptionPane.showMessageDialog(this,"record added failed");
+         }
+     } catch (SQLException ex) {
+         Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+     }
     }//GEN-LAST:event_signUpButtonAdminActionPerformed
 
     private void LastNameFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastNameFieldAdminActionPerformed
