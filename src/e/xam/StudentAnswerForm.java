@@ -8,27 +8,42 @@ import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
 
 public final class StudentAnswerForm extends javax.swing.JFrame {
      
     Connection con;
     ButtonGroup group = new ButtonGroup();
+
+    
      
     
     int maxQuestionId;//
     int questionId = 1 ;//for select questions and display questions
     String questionIn,optionOneIn,optionTwoIn,optionThreeIn,optionFourIn;
-    int correctAnswer;
+    int correctAnswer;//for compare student answer with correct answer
     int radioAction = 0;
-    int nonAttempted[] = new int[maxQuestionId];//for count non attempted question
     int score = 0;
-    int nonAttemptedArray[] = new int[50];
+    int nonAttemptedArray[] = new int[50];//for count non attempted question
     int i = 0; //for array position
-    public StudentAnswerForm() {
+    String mobile;
+    
+    String name;//for get student name from database
+    int rollNo;//for get student roll number from database
+    
+    public StudentAnswerForm(String mobile) {
+        this.mobile = mobile;
         initComponents();
         connect();
         lastQuestionId();
         selectAndShow();
+        getStudentDetails();
+        
+        
+    }
+
+    private StudentAnswerForm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void connect(){ //Function for connection of database
         try{
@@ -85,12 +100,48 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
        optionFour.setText(optionFourIn);
    }
    public void selectAndShow(){
-       if(questionId <= maxQuestionId){
+       if(questionId < maxQuestionId){
+           selectQuestions();
+           showQuestions();
+       }else if(questionId == maxQuestionId){
+           nextButton.setText("Finish");
            selectQuestions();
            showQuestions();
        }else{
+           JOptionPane.showMessageDialog(this, "You are finished the exam");
+           setStudentMark();
            dispose();
        }
+   }
+   public void getStudentDetails(){//get deatials of attempted student from database
+        try {
+            String query = "SELECT * FROM studentDetails WHERE mobile = '"+mobile+"'";
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(query);
+            rs.next();
+            name = rs.getString("name");
+            rollNo = rs.getInt("rollno");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAnswerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+   public void setStudentMark(){
+        try {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO `studentScores` (`sino`, `name`, `rollno`, `score`) VALUES (NULL, ? , ? , ?) ");
+            
+            ps.setString(1, name);
+            ps.setInt(2, rollNo);
+            ps.setInt(3, score);
+            int k = ps.executeUpdate();
+            if(k == 1){
+                System.out.println("Added to database ");
+            }else{
+                System.out.println("not added");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAnswerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -110,11 +161,6 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         optionThree = new javax.swing.JRadioButton();
         nextButton = new javax.swing.JButton();
-
-	group.add(optionOne);
-	group.add(optionTwo);
-	group.add(optionThree);
-	group.add(optionFour);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 200, 0, 0));
@@ -338,11 +384,12 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
             System.out.println("i="+i);
             
         }
+       
         System.out.println("radioAction="+radioAction+"correctAnswer"+correctAnswer);
         group.clearSelection();
         radioAction = 0;
         selectAndShow();
-        System.out.println("Score = "+score+"\nNon Attempted = "+ Arrays.toString(nonAttemptedArray)+"len="+nonAttempted.length);
+        System.out.println("Score = "+score+"\nNon Attempted = "+ Arrays.toString(nonAttemptedArray)+"len="+nonAttemptedArray.length);
         
     }//GEN-LAST:event_nextButtonActionPerformed
 
