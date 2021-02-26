@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 import javax.swing.JOptionPane;
 
 /**
@@ -16,28 +17,25 @@ import javax.swing.JOptionPane;
  */
 public class SignupPageForAdmin extends javax.swing.JFrame {
  String OTP;
- boolean verifyOtpFlag = false;
     /**
      * Creates new form SignupPageForAdmin
      */
     public SignupPageForAdmin() {
         initComponents();
-         connect();
+        connect ();
     }
      Connection con;
     PreparedStatement pst;
-     public void connect(){
+    public void connect(){
      try {
          Class.forName("com.mysql.jdbc.Driver");
          con= DriverManager.getConnection("jdbc:mysql://localhost/examadmin","root","Password@66");
-         
      } catch (ClassNotFoundException ex) {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      } catch (SQLException ex) {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      }
-     }
-
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
