@@ -155,7 +155,7 @@ public class SelectionForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void studentAlreadyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentAlreadyButtonActionPerformed
-        LoginForm loginForm = new LoginForm();
+        LoginForm loginForm = new LoginForm(null);
         loginForm.setVisible(true);
         dispose();
     }//GEN-LAST:event_studentAlreadyButtonActionPerformed

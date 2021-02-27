@@ -26,13 +26,13 @@ public class LoginForm extends javax.swing.JFrame {
     
     RegistrationForm regForm = new RegistrationForm();
     
-    public LoginForm() {
+    public LoginForm(String mobile) {
         this.password = "newpassword";
         initComponents();
         connect();//Connection of database;
         fillMobileLabel.setVisible(false);
         fillOtpLabel.setVisible(false);
-        
+        mobileField.setText(mobile);
     }
     public void connect(){//Function implement connection to database in loginform
         try {
@@ -42,6 +42,7 @@ public class LoginForm extends javax.swing.JFrame {
         }
         try {
             con = DriverManager.getConnection(url, user, password);
+            System.out.println("connected");
         } catch (SQLException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -348,7 +349,7 @@ public class LoginForm extends javax.swing.JFrame {
         if(OTPCheck.equals(OTP)){
             
             JOptionPane.showMessageDialog(this, "Otp verified Successfully");
-            new StudentAnswerForm(mobile).setVisible(true);
+            new StudentDashbord(mobile).setVisible(true);
             dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
@@ -361,11 +362,6 @@ public class LoginForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_signUpButtonActionPerformed
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> {
-            new LoginForm().setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fillMobileLabel;

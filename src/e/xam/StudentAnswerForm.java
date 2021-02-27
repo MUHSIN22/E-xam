@@ -26,19 +26,25 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
     private int score = 0;
     private int nonAttemptedArray[] = new int[50];//for count non attempted question
     private int i = 0; //for array position
-    private String mobile;
+    private String mobile,examId;
     private int Attempted = 0 , nonAttempted = 0;
     
     private String name;//for get student name from database
     private int rollNo;//for get student roll number from database
     
-    public StudentAnswerForm(String mobile) {
+    private String examName,subName,subCode;
+    private int teacherId;
+    
+    public StudentAnswerForm(String mobile,String examId) {
         this.mobile = mobile;
+        this.examId = examId;
         initComponents();
         connect();
         lastQuestionId();
         selectAndShow();
         getStudentDetails();
+        getSubjectDetails();
+        showSubjectDetials();
         totalQuestionsLabel.setText(String.valueOf(maxQuestionId));
         attemptedAndNonAttempted();
         
@@ -77,7 +83,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
        
         try {
             st = con.createStatement();
-            String query = "SELECT * FROM questions WHERE questionId = "+questionId+""; 
+            String query = "SELECT * FROM questions WHERE questionId = "+questionId+" AND subId LIKE '"+examId+"'"; 
             ResultSet rs = st.executeQuery(query);
             System.err.println(query);
             rs.next();
@@ -130,11 +136,13 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
    }
    public void setStudentMark(){
         try {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO `studentScores` (`sino`, `name`, `rollno`, `score`) VALUES (NULL, ? , ? , ?) ");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO `studentScores` (`sino`, `name`, `rollno`, `score`, `studentMobile`, `examId`) VALUES (NULL, ?, ? , ? , ? , ?)");
             
             ps.setString(1, name);
             ps.setInt(2, rollNo);
             ps.setInt(3, score);
+            ps.setString(4, mobile);
+            ps.setString(5, examId);
             int k = ps.executeUpdate();
             if(k == 1){
                 System.out.println("Added to database ");
@@ -144,6 +152,28 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(StudentAnswerForm.class.getName()).log(Level.SEVERE, null, ex);
         }
+   }
+   public void getSubjectDetails(){
+       String query = "SELECT * FROM subjectDetails where subId = '"+examId+"'";
+        try {
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(query);
+            
+            rs.next();
+            
+            examName = rs.getString("examName");
+            subName = rs.getString("subName");
+            subCode = rs.getString("subCode");
+            teacherId = rs.getInt("teacherId");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAnswerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
+   public void showSubjectDetials(){
+       examNameLabel.setText(examName);
+       subNameLabel.setText(subName);
+       subCodeLabel.setText(subCode);
    }
    public void attemptedAndNonAttempted(){
        attemptedLabel.setText(String.valueOf(Attempted));
@@ -173,6 +203,11 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         attemptedLabel = new javax.swing.JLabel();
         nonAttemptedLabel = new javax.swing.JLabel();
         totalQuestionsLabel = new javax.swing.JLabel();
+        examNameLabel = new javax.swing.JLabel();
+        subNameLabel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        subCodeLabel = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 200, 0, 0));
@@ -323,55 +358,94 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         totalQuestionsLabel.setForeground(java.awt.Color.black);
         totalQuestionsLabel.setText("jLabel6");
 
+        examNameLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        examNameLabel.setText("Exam Name");
+
+        subNameLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        subNameLabel.setText("sub Name");
+
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel8.setText("Subcode:");
+
+        subCodeLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        subCodeLabel.setText("3033");
+
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel6.setText("Subject:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(384, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(561, 561, 561))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(question)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(question)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(attemptedLabel))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(attemptedLabel))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(nonAttemptedLabel))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(totalQuestionsLabel)))
+                                    .addGap(515, 515, 515)
+                                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(nonAttemptedLabel))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(totalQuestionsLabel)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 515, Short.MAX_VALUE)
-                            .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(24, 24, 24)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(24, 24, 24)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(0, 88, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(questionIdLablel))))
+                        .addComponent(questionIdLablel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(subCodeLabel)
+                        .addGap(87, 87, 87))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(subNameLabel))
+                            .addComponent(examNameLabel))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(109, 109, 109)
+                .addGap(21, 21, 21)
+                .addComponent(examNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subNameLabel)
+                    .addComponent(jLabel6))
+                .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(questionIdLablel))
+                    .addComponent(questionIdLablel)
+                    .addComponent(jLabel8)
+                    .addComponent(subCodeLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -402,7 +476,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(totalQuestionsLabel))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -470,11 +544,14 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel attemptedLabel;
+    private javax.swing.JLabel examNameLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -488,6 +565,8 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
     private javax.swing.JRadioButton optionTwo;
     private javax.swing.JLabel question;
     private javax.swing.JLabel questionIdLablel;
+    private javax.swing.JLabel subCodeLabel;
+    private javax.swing.JLabel subNameLabel;
     private javax.swing.JLabel totalQuestionsLabel;
     // End of variables declaration//GEN-END:variables
 }

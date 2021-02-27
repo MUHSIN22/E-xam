@@ -6,16 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author hackphiles
- */
 public final class RegistrationForm extends javax.swing.JFrame {
    
     Connection con;
@@ -42,7 +33,84 @@ public final class RegistrationForm extends javax.swing.JFrame {
         
         
    }
-    
+   public void setStudentDetails(){
+                    try{
+            
+                    name = nameField.getText();
+                    int rollNo = Integer.parseInt(rollNoField.getText()); 
+                    semester = semField.getText();
+                    department = depField.getText();
+                    mobile = mobileField.getText();
+            
+                    //Insert values into table studentDetails in database E-xam 
+                    PreparedStatement ps = con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
+            
+                    ps.setString(1, name);
+                    ps.setInt(2, rollNo);
+                    ps.setString(3, semester);
+                    ps.setString(4, department);
+                    ps.setString(5, mobile);
+                    int k = ps.executeUpdate();
+            
+            
+                    if(k == 1){//Check whether added to database
+                        dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");
+                    }
+           
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+   }
+   public void otpValidation(){
+       //Function for verify otp
+        String OTPCheck = otpField.getText();//user entered OTP
+        
+        System.out.println("OTP in ver ="+OTP);
+        System.out.println(OTPCheck);
+        if(OTPCheck.equals(OTP)){
+            verifyOtpFlag = 1;
+            JOptionPane.showMessageDialog(this, "Your mobile number verified");
+        }else{
+            JOptionPane.showMessageDialog(this, "Please Enter valid OTP");
+        }
+   }
+   public void sendOtp(){
+            OtpGenerator otpGenerator = new OtpGenerator();
+                
+            OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
+                
+            System.out.println("OTP="+OTP);
+                
+            /*String apiKey = "NYudIasHf34BmDlFXEOb1zRALQyxStv0TZoi9M26PqVpe8cKCJrQ4KOMgSEkjcoeanzDmp3fTqZA92NH";//API key of free2sms
+                
+            OtpVerification otpVerification = new OtpVerification();
+            otpVerification.OtpVerification("Hey "+name+"\n your OTP for E-Xam is "+OTP+".Don't share it with anyone.",mobile,apiKey);//For send 
+            */
+            JOptionPane.showMessageDialog(this, "OTP sended successfully");
+   } 
+   public void checkUserExistAndSendOtp(){
+       mobile = mobileField.getText();
+       String query = "SELECT * FROM studentDetails WHERE mobile = '"+mobile+"'";
+       System.out.println(query);
+       try {
+            
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(query);
+            if(rs.next()){
+                JOptionPane.showMessageDialog(this, "User with this mobile number already exist\nPlease login!!");
+                new LoginForm(mobile).setVisible(true);
+                dispose();
+            }else{
+                sendOtp();
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -403,34 +471,8 @@ public final class RegistrationForm extends javax.swing.JFrame {
 
     private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         if(verifyOtpFlag == 1){
-              try{
-            
-                    name = nameField.getText();
-                    int rollNo = Integer.parseInt(rollNoField.getText()); 
-                    semester = semField.getText();
-                    department = depField.getText();
-                    mobile = mobileField.getText();
-            
-                    //Insert values into table studentDetails in database E-xam 
-                    PreparedStatement ps = con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
-            
-                    ps.setString(1, name);
-                    ps.setInt(2, rollNo);
-                    ps.setString(3, semester);
-                    ps.setString(4, department);
-                    ps.setString(5, mobile);
-                    int k = ps.executeUpdate();
-            
-            
-                    if(k == 1){//Check whether added to database
-                        dispose();
-                    }else{
-                        JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");
-                    }
-           
-                } catch (SQLException ex) {
-                    Logger.getLogger(RegistrationForm.class.getName()).log(Level.SEVERE, null, ex);
-                }  
+                setStudentDetails();
+                new StudentDashbord(mobile).setVisible(true);
         }
         
         
@@ -439,37 +481,15 @@ public final class RegistrationForm extends javax.swing.JFrame {
     }//GEN-LAST:event_signUpButtonActionPerformed
 
     private void sendOtpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendOtpButtonActionPerformed
-            OtpGenerator otpGenerator = new OtpGenerator();
-                
-            OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
-                
-            System.out.println("OTP="+OTP);
-                
-            /*String apiKey = "NYudIasHf34BmDlFXEOb1zRALQyxStv0TZoi9M26PqVpe8cKCJrQ4KOMgSEkjcoeanzDmp3fTqZA92NH";//API key of free2sms
-                
-            OtpVerification otpVerification = new OtpVerification();
-            otpVerification.OtpVerification("Hey "+name+"\n your OTP for E-Xam is "+OTP+".Don't share it with anyone.",mobile,apiKey);//For send 
-            */
-            JOptionPane.showMessageDialog(this, "OTP sended successfully");
+            checkUserExistAndSendOtp();
     }//GEN-LAST:event_sendOtpButtonActionPerformed
 
     private void verifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyButtonActionPerformed
-        //Function for verify otp
-        String OTPCheck = otpField.getText();//user entered OTP
-        
-        System.out.println("OTP in ver ="+OTP);
-        System.out.println(OTPCheck);
-        if(OTPCheck.equals(OTP)){
-            verifyOtpFlag = 1;
-            JOptionPane.showMessageDialog(this, "Your mobile number verified");
-        }else{
-            JOptionPane.showMessageDialog(this, "Please Enter valid OTP");
-        }
-        
+        otpValidation();
     }//GEN-LAST:event_verifyButtonActionPerformed
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        LoginForm loginForm = new LoginForm();
+        LoginForm loginForm = new LoginForm(null);
         loginForm.setVisible(true);
         dispose();
     }//GEN-LAST:event_logInButtonActionPerformed
