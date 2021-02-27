@@ -7,6 +7,8 @@ package adminpanels;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 import javax.swing.JOptionPane;
@@ -26,6 +28,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     }
      Connection con;
     PreparedStatement pst;
+    
     public void connect(){
      try {
          Class.forName("com.mysql.jdbc.Driver");
@@ -36,6 +39,12 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      }
     }
+    public static boolean isEmailValid(String email) {
+    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+    Matcher matcher = pattern.matcher(email);
+    return matcher.matches();
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,11 +73,13 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         LogInButtonAdmin = new javax.swing.JButton();
         LastNameFieldAdmin = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        EmailFieldAdmin = new javax.swing.JTextField();
+        TidlFieldAdmin = new javax.swing.JTextField();
         mobiletxtfield = new javax.swing.JTextField();
         otptxtfield = new javax.swing.JTextField();
         sendotpbtn = new javax.swing.JButton();
         verifyotpbtn = new javax.swing.JButton();
+        EmailFieldAdmin = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,11 +209,11 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
 
         jLabel17.setText("or");
 
-        EmailFieldAdmin.setBackground(new java.awt.Color(254, 254, 254));
-        EmailFieldAdmin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
-        EmailFieldAdmin.addActionListener(new java.awt.event.ActionListener() {
+        TidlFieldAdmin.setBackground(new java.awt.Color(254, 254, 254));
+        TidlFieldAdmin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        TidlFieldAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EmailFieldAdminActionPerformed(evt);
+                TidlFieldAdminActionPerformed(evt);
             }
         });
 
@@ -242,31 +253,20 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
             }
         });
 
+        EmailFieldAdmin.setBackground(new java.awt.Color(254, 254, 254));
+        EmailFieldAdmin.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 1, true));
+        EmailFieldAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmailFieldAdminActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("teacher id");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(FirstNameFieldAdmin)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LastNameFieldAdmin)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(19, 19, 19))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(sendotpbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,28 +274,51 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                 .addComponent(verifyotpbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addGap(221, 221, 221)
-                        .addComponent(jLabel15))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(mobiletxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(otptxtfield, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(FirstNameFieldAdmin)
+                                        .addGap(18, 18, 18)))
+                                .addComponent(jLabel12)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel5))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(191, 191, 191)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(signUpButtonAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(LogInButtonAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel17)
-                                .addGap(61, 61, 61)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                                .addGap(61, 61, 61))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
+                            .addComponent(mobiletxtfield, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LastNameFieldAdmin)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(TidlFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(otptxtfield))))
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,9 +334,13 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                     .addComponent(FirstNameFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LastNameFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TidlFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EmailFieldAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
@@ -341,7 +368,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
@@ -353,9 +380,9 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EmailFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailFieldAdminActionPerformed
+    private void TidlFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TidlFieldAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_EmailFieldAdminActionPerformed
+    }//GEN-LAST:event_TidlFieldAdminActionPerformed
 
     private void FirstFirstNameFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstFirstNameFieldAdminActionPerformed
         // TODO add your handling code here:
@@ -363,29 +390,52 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
 
     private void signUpButtonAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonAdminActionPerformed
      try {
+        
+         String OTPCheck = otptxtfield.getText();
+         
          String firstname=FirstNameFieldAdmin.getText();
          String lastname=LastNameFieldAdmin.getText();
          String email=EmailFieldAdmin.getText();
          String phone=mobiletxtfield.getText();
+         String id=TidlFieldAdmin.getText();
          
-         pst =con.prepareStatement("insert into signupforadmin(firstname,lastname,email,phone)values(?,?,?,?)");
+    if(OTPCheck.equals(OTP)){
+         boolean ap =isEmailValid(email);
+         if(ap==false){
+             JOptionPane.showMessageDialog(this, "enter the valied email");
+             EmailFieldAdmin.setText("");
+             
+         } else{ 
+         pst =con.prepareStatement("insert into signupforadmin(firstname,lastname,email,phone,id)values(?,?,?,?,?)");
          pst.setString(1, firstname);
          pst.setString(2, lastname);
          pst.setString(3, email);
          pst.setString(4, phone);
+         pst.setString(5, id);
          int k=pst.executeUpdate();
-         
+               
          if (k==1){
              JOptionPane.showMessageDialog(this,"record added successfully");
+             
              FirstNameFieldAdmin.setText("");
              LastNameFieldAdmin.setText("");
              EmailFieldAdmin.setText("");
              mobiletxtfield.setText("");
+             TidlFieldAdmin.setText(" ");
+             otptxtfield.setText(" ");
+             
              FirstNameFieldAdmin.requestFocus();
+             new LoginPageForAdmin().setVisible(true);
              
          }else{
              JOptionPane.showMessageDialog(this,"record added failed");
          }
+         }
+    }
+    else{
+         JOptionPane.showMessageDialog(this, "entered OTP is incorrecr");
+         }
+         
      } catch (SQLException ex) {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      }
@@ -427,6 +477,10 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_verifyotpbtnActionPerformed
 
+    private void EmailFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailFieldAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmailFieldAdminActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +521,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField FirstNameFieldAdmin;
     private javax.swing.JTextField LastNameFieldAdmin;
     private javax.swing.JButton LogInButtonAdmin;
+    private javax.swing.JTextField TidlFieldAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -476,6 +531,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -5,6 +5,9 @@
  */
 package adminpanels;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -16,6 +19,19 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
    
     public LoginPageForAdmin() {
         initComponents();
+        connect();
+    }
+    Connection con;
+    PreparedStatement pst;
+     public void connect(){
+     try {
+         Class.forName("com.mysql.jdbc.Driver");
+         con= DriverManager.getConnection("jdbc:mysql://localhost/examadmin","root","Password@66");
+     } catch (ClassNotFoundException ex) {
+         Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (SQLException ex) {
+         Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+     }
     }
 
     /**
@@ -262,7 +278,29 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logInButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonadminActionPerformed
-        // TODO add your handling code here:
+       
+        try {
+            String OTPCheck = TxtloginOtp.getText();
+            
+            
+            
+            
+            
+            
+            if(OTPCheck.equals(OTP)){
+                JOptionPane.showMessageDialog(this, "login Successfully");
+                new adminhome().setVisible(true);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "error! please try again");
+                TxtloginOtp.setText("");
+            }
+            con.close();
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+               
     }//GEN-LAST:event_logInButtonadminActionPerformed
 
     private void signUpButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonadminActionPerformed
@@ -280,11 +318,22 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtloginmobileActionPerformed
 
     private void SendotpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendotpActionPerformed
-        OtpGenerator otpGenerator = new OtpGenerator();
-                
-                OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
-                
-                System.out.println("OTP="+OTP);
+        try {
+            String phone=Txtloginmobile.getText();
+            pst =con.prepareStatement("select * from signupforadmin where phone=?");
+            pst.setString(1, phone);
+            ResultSet rs=pst.executeQuery();
+            OtpGenerator otpGenerator = new OtpGenerator();
+            if(rs.next()){
+            
+            OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
+            System.out.println("OTP="+OTP);
+            }else{
+                JOptionPane.showMessageDialog(this, "The mobile number you entered is invalid");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_SendotpActionPerformed
 
@@ -355,4 +404,6 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JButton signUpButtonadmin;
     private javax.swing.JButton verifybtn;
     // End of variables declaration//GEN-END:variables
+
+    
 }
