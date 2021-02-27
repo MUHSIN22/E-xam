@@ -17,15 +17,21 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
     int radioFind; //For find which radio button is checked
     boolean fieldEmpty = false;//for check any fields are empty
     String question,optionOne,optionTwo,optionThree,optionFour;//variables for save questions and options
+    String subId;
     
     ButtonGroup group = new ButtonGroup();
     
-    public QuestionUploadForm() throws SQLException {
+    public QuestionUploadForm(String subId) throws SQLException {
         initComponents();
         connect();
         questionId();
         questionNumLabel.setText(String.valueOf(questionId()));
-        System.out.println(String.valueOf(questionId()));
+        this.subId = subId;
+        
+    }
+
+    private QuestionUploadForm() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     public void connect(){ //Function for connection of database
         try{
@@ -44,7 +50,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         int questionId = 0 ;
         try {
             st = con.createStatement();
-             ResultSet rs = st.executeQuery("SELECT MAX(questionId) FROM questions");
+             ResultSet rs = st.executeQuery("SELECT MAX(questionId) FROM questions WHERE subId = '"+subId+"'");
              rs.next();
              questionId = rs.getInt(1) + 1;
         } catch (SQLException ex) {
@@ -62,7 +68,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
             
             
             try {
-                PreparedStatement ps = con.prepareStatement("insert into questions values(?,?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("insert into questions values(NULL,?,?,?,?,?,?,?,?)");
                 ps.setInt(1,questionId());
                 ps.setString(2, question);
                 ps.setString(3, optionOne);
@@ -70,6 +76,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
                 ps.setString(5, optionThree);
                 ps.setString(6, optionFour);
                 ps.setInt(7, radioFind);
+                ps.setString(8,subId);
                 
                 int k = ps.executeUpdate();
                 if(k == 1){
@@ -114,12 +121,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         optionFourCheck = new javax.swing.JRadioButton();
         optionTwoCheck = new javax.swing.JRadioButton();
         Next = new javax.swing.JButton();
-	
-	group.add(optionOneCheck);
-	group.add(optionTwoCheck);
-	group.add(optionThreeCheck);
-	group.add(optionFourCheck);
-	
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 150, 0, 0));
 
@@ -159,7 +161,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         optionOneLabel.setForeground(new java.awt.Color(1, 1, 1));
         optionOneLabel.setText("Option 1");
 
-        optionOneCheck.setBackground(java.awt.Color.darkGray);
+        optionOneCheck.setBackground(new java.awt.Color(254, 254, 254));
         optionOneCheck.setForeground(java.awt.Color.white);
         optionOneCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -337,11 +339,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new QuestionUploadForm().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new QuestionUploadForm().setVisible(true);
             }
         });
     }

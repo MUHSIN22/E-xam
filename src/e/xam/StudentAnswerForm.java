@@ -18,18 +18,19 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
     
      
     
-    int maxQuestionId;//
-    int questionId = 1 ;//for select questions and display questions
-    String questionIn,optionOneIn,optionTwoIn,optionThreeIn,optionFourIn;
-    int correctAnswer;//for compare student answer with correct answer
-    int radioAction = 0;
-    int score = 0;
-    int nonAttemptedArray[] = new int[50];//for count non attempted question
-    int i = 0; //for array position
-    String mobile;
+    private int maxQuestionId;//
+    private int questionId = 1 ;//for select questions and display questions
+    private String questionIn,optionOneIn,optionTwoIn,optionThreeIn,optionFourIn;
+    private int correctAnswer;//for compare student answer with correct answer
+    private int radioAction = 0;
+    private int score = 0;
+    private int nonAttemptedArray[] = new int[50];//for count non attempted question
+    private int i = 0; //for array position
+    private String mobile;
+    private int Attempted = 0 , nonAttempted = 0;
     
-    String name;//for get student name from database
-    int rollNo;//for get student roll number from database
+    private String name;//for get student name from database
+    private int rollNo;//for get student roll number from database
     
     public StudentAnswerForm(String mobile) {
         this.mobile = mobile;
@@ -38,9 +39,10 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         lastQuestionId();
         selectAndShow();
         getStudentDetails();
+        totalQuestionsLabel.setText(String.valueOf(maxQuestionId));
+        attemptedAndNonAttempted();
         
-        
-    }
+        }
 
     private StudentAnswerForm() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -143,6 +145,10 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
             Logger.getLogger(StudentAnswerForm.class.getName()).log(Level.SEVERE, null, ex);
         }
    }
+   public void attemptedAndNonAttempted(){
+       attemptedLabel.setText(String.valueOf(Attempted));
+       nonAttemptedLabel.setText(String.valueOf(nonAttempted));
+   }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -161,6 +167,12 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         optionThree = new javax.swing.JRadioButton();
         nextButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        attemptedLabel = new javax.swing.JLabel();
+        nonAttemptedLabel = new javax.swing.JLabel();
+        totalQuestionsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 200, 0, 0));
@@ -287,6 +299,30 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 157, 0));
+        jLabel3.setText("Attempted :");
+
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.red);
+        jLabel4.setText("Non-Attempted :");
+
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel5.setForeground(java.awt.Color.black);
+        jLabel5.setText("Total Questions :");
+
+        attemptedLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        attemptedLabel.setForeground(new java.awt.Color(17, 173, 17));
+        attemptedLabel.setText("jLabel6");
+
+        nonAttemptedLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        nonAttemptedLabel.setForeground(java.awt.Color.red);
+        nonAttemptedLabel.setText("jLabel6");
+
+        totalQuestionsLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        totalQuestionsLabel.setForeground(java.awt.Color.black);
+        totalQuestionsLabel.setText("jLabel6");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -299,8 +335,23 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
                 .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(question)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(attemptedLabel))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nonAttemptedLabel))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(totalQuestionsLabel)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 515, Short.MAX_VALUE)
+                            .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -337,8 +388,21 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(attemptedLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(nonAttemptedLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(totalQuestionsLabel))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -373,12 +437,13 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         if(radioAction > 0){
-            
+            Attempted++;
             if(radioAction == correctAnswer){
                 score++;
             }
             
         }else {
+            nonAttempted++;
             nonAttemptedArray[i] = questionId - 1 ;
             i++;
             System.out.println("i="+i);
@@ -389,6 +454,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         group.clearSelection();
         radioAction = 0;
         selectAndShow();
+        attemptedAndNonAttempted();
         System.out.println("Score = "+score+"\nNon Attempted = "+ Arrays.toString(nonAttemptedArray)+"len="+nonAttemptedArray.length);
         
     }//GEN-LAST:event_nextButtonActionPerformed
@@ -403,19 +469,25 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel attemptedLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JButton nextButton;
+    private javax.swing.JLabel nonAttemptedLabel;
     private javax.swing.JRadioButton optionFour;
     private javax.swing.JRadioButton optionOne;
     private javax.swing.JRadioButton optionThree;
     private javax.swing.JRadioButton optionTwo;
     private javax.swing.JLabel question;
     private javax.swing.JLabel questionIdLablel;
+    private javax.swing.JLabel totalQuestionsLabel;
     // End of variables declaration//GEN-END:variables
 }
