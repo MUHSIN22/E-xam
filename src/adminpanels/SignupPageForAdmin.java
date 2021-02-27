@@ -39,6 +39,18 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      }
     }
+     public static boolean isPhoneValid(String phone) {
+    String regex = "\\d{10}";
+      //Creating a pattern object
+      Pattern pattern = Pattern.compile(regex);
+      //Creating a Matcher object
+      Matcher matcher = pattern.matcher(phone);
+      return matcher.matches();
+     }
+    
+    
+    
+    
     public static boolean isEmailValid(String email) {
     String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
     Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
@@ -460,11 +472,19 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_FirstotptxtfieldActionPerformed
 
     private void sendotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendotpbtnActionPerformed
-        OtpGenerator otpGenerator = new OtpGenerator();
+                String phone=mobiletxtfield.getText();
+                boolean pv=isPhoneValid(phone);
+                if(pv==false){
+                JOptionPane.showMessageDialog(this, "please enter valied phone number");
+                mobiletxtfield.setText("");
+                }else{
+        
+                 OtpGenerator otpGenerator = new OtpGenerator();
                 
                 OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
                 
                 System.out.println("OTP="+OTP);
+                }
     }//GEN-LAST:event_sendotpbtnActionPerformed
 
     private void verifyotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyotpbtnActionPerformed
