@@ -3,6 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/hp/Desktop/E-xam/src/adminpanels/LoginPageForAdmin.java</file>
+            <file>file:/C:/Users/hp/Desktop/E-xam/src/adminpanels/SignupPageForAdmin.java</file>
+=======
             <file>file:/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/OtpGenerator.java</file>
             <file>file:/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/EXam.java</file>
             <file>file:/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/LoginForm.java</file>
@@ -15,6 +19,7 @@
             <file>file:/home/hackphiles/Documents/E-xam/E-xam/src/SubjectDetailsForm.java</file>
             <file>file:/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/StudentAnswerForm.java</file>
             <file>file:/home/hackphiles/Documents/E-xam/E-xam/src/AdminDashboard.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>
