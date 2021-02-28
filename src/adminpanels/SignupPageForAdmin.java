@@ -13,10 +13,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author hp
- */
+//nothing
 public class SignupPageForAdmin extends javax.swing.JFrame {
  String OTP;
     /**
