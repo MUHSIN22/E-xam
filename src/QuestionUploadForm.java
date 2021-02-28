@@ -12,27 +12,29 @@ import javax.swing.JOptionPane;
 
 
 public final class QuestionUploadForm extends javax.swing.JFrame {
+
+    private static final long serialVersionUID = 1L;
+    
+    
     
     Connection con;
     int radioFind; //For find which radio button is checked
     boolean fieldEmpty = false;//for check any fields are empty
     String question,optionOne,optionTwo,optionThree,optionFour;//variables for save questions and options
     String subId;
-    
+    int maxQuestionNo;
     ButtonGroup group = new ButtonGroup();
+    int questionId = 0;
     
     public QuestionUploadForm(String subId) throws SQLException {
         initComponents();
         connect();
         questionId();
-        questionNumLabel.setText(String.valueOf(questionId()));
         this.subId = subId;
-        
+        maxQuestion();
+        System.out.println(maxQuestionNo);
     }
 
-    private QuestionUploadForm() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     public void connect(){ //Function for connection of database
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -45,18 +47,17 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         
         
    }
-    public int questionId() throws SQLException{
+    public void questionId() throws SQLException{
         Statement st = null;
-        int questionId = 0 ;
         try {
             st = con.createStatement();
              ResultSet rs = st.executeQuery("SELECT MAX(questionId) FROM questions WHERE subId = '"+subId+"'");
              rs.next();
              questionId = rs.getInt(1) + 1;
+             questionNumLabel.setText(String.valueOf(questionId));
         } catch (SQLException ex) {
             Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return questionId;
     }
     public void uploadQuestion() throws SQLException{
             
@@ -69,7 +70,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
             
             try {
                 PreparedStatement ps = con.prepareStatement("insert into questions values(NULL,?,?,?,?,?,?,?,?)");
-                ps.setInt(1,questionId());
+                ps.setInt(1,questionId);
                 ps.setString(2, question);
                 ps.setString(3, optionOne);
                 ps.setString(4, optionTwo);
@@ -80,9 +81,8 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
                 
                 int k = ps.executeUpdate();
                 if(k == 1){
-                    System.out.println("Successfully added to database");
                     questionId();
-                    questionNumLabel.setText(String.valueOf(questionId()));
+                    System.out.println("Successfully added to database"+questionId);
                     questionInputField.setText("");
                     optionOneInput.setText("");
                     optionTwoInput.setText("");
@@ -97,8 +97,53 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
                 Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-
-   
+    public void maxQuestion(){
+        String query = "SELECT * FROM subjectDetails WHERE subId = '"+subId+"'";
+        System.out.println(query);
+        try {
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery(query);
+            rs.next();
+            maxQuestionNo = rs.getInt("singleChoice");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void forNextButton(){
+        if(questionId == maxQuestionNo-1){
+            nextButton.setText("Finish");
+        }
+        if(questionId < maxQuestionNo){
+            findRadioAndExecute();
+        }else if(questionId  == maxQuestionNo){
+            findRadioAndExecute();
+            dispose();
+            JOptionPane.showMessageDialog(this, questionId-1+" Single choice question uploaded!");
+            new uploadWrittenQuestions(subId).setVisible(true);
+        }
+    }
+    public void findRadioAndExecute(){
+        if(radioFind > 0){ //for check whether any of radio button is enabled
+           try {
+           uploadQuestion();
+           } catch (SQLException ex) {
+               Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
+           }
+                
+       }else{
+           JOptionPane.showMessageDialog(this, "Please select correct answer also!!");
+           optionOneLabel.setForeground(Color.red);
+           optionOneLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
+           optionTwoLabel.setForeground(Color.red);
+           optionTwoLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
+           optionThreeLabel.setForeground(Color.red);
+           optionThreeLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
+           optionFourLabel.setForeground(Color.red);
+           optionFourLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
+           
+       }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -120,7 +165,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         optionThreeCheck = new javax.swing.JRadioButton();
         optionFourCheck = new javax.swing.JRadioButton();
         optionTwoCheck = new javax.swing.JRadioButton();
-        Next = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 150, 0, 0));
@@ -187,11 +232,11 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
             }
         });
 
-        Next.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        Next.setText("Next");
-        Next.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        nextButton.setText("Next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NextActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -224,7 +269,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
                                     .addGap(4, 4, 4)
                                     .addComponent(optionFourLabel))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(optionFourInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                                         .addComponent(optionTwoInput, javax.swing.GroupLayout.Alignment.TRAILING))))))
@@ -277,7 +322,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
                     .addComponent(optionFourInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(optionThreeInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(Next, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -313,42 +358,23 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
         radioFind = 2;
     }//GEN-LAST:event_optionTwoCheckActionPerformed
 
-    private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-       if(radioFind > 0){ //for check whether any of radio button is enabled
-           try {
-           uploadQuestion();
-           } catch (SQLException ex) {
-               Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
-           }
-                
-       }else{
-           JOptionPane.showMessageDialog(this, "Please select correct answer also!!");
-           optionOneLabel.setForeground(Color.red);
-           optionOneLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
-           optionTwoLabel.setForeground(Color.red);
-           optionTwoLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
-           optionThreeLabel.setForeground(Color.red);
-           optionThreeLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
-           optionFourLabel.setForeground(Color.red);
-           optionFourLabel.setFont(new java.awt.Font("Ubuntu", 2, 18));
-           
-       }
-    }//GEN-LAST:event_NextActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        try {
+            questionId();
+        } catch (SQLException ex) {
+            Logger.getLogger(QuestionUploadForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        forNextButton();
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new QuestionUploadForm().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Next;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton nextButton;
     private javax.swing.JRadioButton optionFourCheck;
     private javax.swing.JTextField optionFourInput;
     private javax.swing.JLabel optionFourLabel;

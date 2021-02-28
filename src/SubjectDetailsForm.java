@@ -21,7 +21,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
     private String user = "root";
     private String password = "newpassword";
     
-    private String examName,subName,subCode,teacherName;
+    private String examName,subName,subCode,teacherName,singleChoice,writtenNum;
     
     private boolean empty = false;
     
@@ -31,6 +31,8 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         cautionExamName.setVisible(false);
         cautionSubjectName.setVisible(false);
         cautionSubCode.setVisible(false);
+        cautionSingleChoice.setVisible(false);
+        cautionMultipleChoice.setVisible(false);
         connect();
         getTeacherDetails();
     }
@@ -60,7 +62,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
     }
     public void insertData(){
         
-        String query = "INSERT INTO `subjectDetails` (`subId`, `examName`, `subName`, `subCode`, `teacherId`) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO `subjectDetails` (`subId`, `examName`, `subName`, `subCode`, `teacherId`,`singleChoice`,`multipleChoice`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, subId);
@@ -68,6 +70,8 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
             ps.setString(3 , subName);
             ps.setString(4, subCode);
             ps.setInt(5, teacherId);
+            ps.setInt(6,Integer.parseInt(singleChoice));
+            ps.setInt(7, Integer.parseInt(writtenNum));
             int k = ps.executeUpdate();
             if(k == 1){
                 System.out.println("succefully added");
@@ -83,6 +87,8 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         examName = examNameField.getText();
         subName = subjectField.getText();
         subCode = subjectCodeField.getText();
+        singleChoice = singleChoiceNumField.getText();
+        writtenNum = writtenNumField.getText();
         if(examName.equals("")){
             cautionExamName.setVisible(true);
             empty = true;
@@ -92,7 +98,14 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         }else if(subCode.equals("")){
             cautionSubCode.setVisible(true);
             empty = true;
-        }else{
+        }else if(singleChoice.equalsIgnoreCase("")){
+            cautionSingleChoice.setVisible(true);
+            empty = true;
+        }else if(writtenNum.equals("")){
+            cautionMultipleChoice.setVisible(true);
+            empty = true;
+        }
+        else{
             generateId();
             subId = idField.getText();
         }
@@ -134,6 +147,12 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         cautionSubCode = new javax.swing.JLabel();
         cautionSubjectName = new javax.swing.JLabel();
         cautionExamName = new javax.swing.JLabel();
+        singleChoiceNumField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        writtenNumField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        cautionSingleChoice = new javax.swing.JLabel();
+        cautionMultipleChoice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(500, 200, 0, 0));
@@ -191,6 +210,20 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         cautionExamName.setForeground(java.awt.Color.red);
         cautionExamName.setText("Please fill this field!! ");
 
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel7.setText("Number single choice questions");
+
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel8.setText("Number of written questions");
+
+        cautionSingleChoice.setFont(new java.awt.Font("Ubuntu", 2, 14)); // NOI18N
+        cautionSingleChoice.setForeground(java.awt.Color.red);
+        cautionSingleChoice.setText("Please fill this field!! ");
+
+        cautionMultipleChoice.setFont(new java.awt.Font("Ubuntu", 2, 14)); // NOI18N
+        cautionMultipleChoice.setForeground(java.awt.Color.red);
+        cautionMultipleChoice.setText("Please fill this field!! ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -202,71 +235,95 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(subjectField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(singleChoiceNumField, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(subjectField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING))
                                     .addComponent(cautionSubjectName))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(24, 24, 24)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(subjectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(cautionSubCode)))
+                                    .addComponent(subjectCodeField)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cautionSubCode)
+                                            .addComponent(jLabel4))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(writtenNumField)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(examNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(generateIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2)
+                                    .addComponent(examNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1)
                                     .addComponent(cautionExamName)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(teacherNameLabel)))
+                                        .addComponent(teacherNameLabel))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(99, 99, 99)
+                                        .addComponent(jLabel8))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cautionSingleChoice)
+                                        .addGap(201, 201, 201)
+                                        .addComponent(cautionMultipleChoice)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(259, 259, 259)
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addGap(71, 71, 71))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel5)
-                .addGap(64, 64, 64)
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(teacherNameLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(examNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(cautionExamName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(jLabel4))
+                .addComponent(examNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(cautionExamName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(subjectField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(subjectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cautionSubjectName)
-                            .addComponent(cautionSubCode))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(teacherNameLabel))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subjectField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subjectCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cautionSubCode)
+                    .addComponent(cautionSubjectName))
+                .addGap(4, 4, 4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(writtenNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(singleChoiceNumField))
+                .addGap(2, 2, 2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cautionSingleChoice)
+                    .addComponent(cautionMultipleChoice))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(generateIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(196, 196, 196))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,7 +334,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, Short.MAX_VALUE)
         );
 
         pack();
@@ -325,6 +382,8 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cautionExamName;
+    private javax.swing.JLabel cautionMultipleChoice;
+    private javax.swing.JLabel cautionSingleChoice;
     private javax.swing.JLabel cautionSubCode;
     private javax.swing.JLabel cautionSubjectName;
     private javax.swing.JTextField examNameField;
@@ -336,9 +395,13 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField singleChoiceNumField;
     private javax.swing.JTextField subjectCodeField;
     private javax.swing.JTextField subjectField;
     private javax.swing.JLabel teacherNameLabel;
+    private javax.swing.JTextField writtenNumField;
     // End of variables declaration//GEN-END:variables
 }
