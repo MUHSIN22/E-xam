@@ -1,4 +1,7 @@
+package adminpanels;
 
+
+import adminpanels.AttendedStudentList;
 import e.xam.LoginForm;
 import java.sql.DriverManager;
 import java.sql.SQLException;

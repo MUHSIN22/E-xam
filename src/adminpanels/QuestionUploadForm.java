@@ -1,3 +1,5 @@
+package adminpanels;
+
 
 import e.xam.LoginForm;
 import e.xam.RegistrationForm;
