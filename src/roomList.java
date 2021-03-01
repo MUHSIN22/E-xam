@@ -16,12 +16,15 @@ public class roomList extends javax.swing.JFrame {
     String user = "root";
     String password = "newpassword";
     
-    private int teacherId = 3;
+    private int teacherId;
     
     String subId;
+    String examName;
     
-    public roomList() {
+    public roomList(int teacherId) {
+        this.teacherId = teacherId;
         initComponents();
+        caution.setVisible(false);
         connect();
         getRoomDetails();
     }
@@ -55,8 +58,6 @@ public class roomList extends javax.swing.JFrame {
         }
     }
     public void selectRoomId(){
-        String examName = (String) comboBoxForRoom.getSelectedItem();
-        System.out.println(examName);
         Statement s1 = null;
         ResultSet rs1 = null;
         try {
@@ -71,6 +72,17 @@ public class roomList extends javax.swing.JFrame {
             Logger.getLogger(roomList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void checkAndselect(){
+        examName = (String) comboBoxForRoom.getSelectedItem();
+        System.out.println(examName);
+        if(examName.equals("Select any room")){
+            caution.setVisible(true);
+        }else{
+            selectRoomId();
+            new AttendedStudentList(subId).setVisible(true);
+            dispose();
+        }
+    }
 
    
     @SuppressWarnings("unchecked")
@@ -82,8 +94,11 @@ public class roomList extends javax.swing.JFrame {
         comboBoxForRoom = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         DoneButton = new javax.swing.JButton();
+        caution = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(600, 300, 0, 0));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,6 +114,10 @@ public class roomList extends javax.swing.JFrame {
             }
         });
 
+        caution.setFont(new java.awt.Font("Ubuntu", 2, 12)); // NOI18N
+        caution.setForeground(java.awt.Color.red);
+        caution.setText("please select any room");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,10 +129,12 @@ public class roomList extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(comboBoxForRoom, 0, 218, Short.MAX_VALUE)
-                            .addComponent(DoneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(caution)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(comboBoxForRoom, 0, 218, Short.MAX_VALUE)
+                                .addComponent(DoneButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -123,9 +144,11 @@ public class roomList extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(caution)
+                .addGap(8, 8, 8)
                 .addComponent(comboBoxForRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addComponent(DoneButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
@@ -145,22 +168,14 @@ public class roomList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void DoneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoneButtonActionPerformed
-        
-        selectRoomId();
+        checkAndselect();
     }//GEN-LAST:event_DoneButtonActionPerformed
 
    
-    public static void main(String args[]) {
-     
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new roomList().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DoneButton;
+    private javax.swing.JLabel caution;
     private javax.swing.JComboBox<String> comboBoxForRoom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

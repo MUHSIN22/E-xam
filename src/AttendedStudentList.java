@@ -15,13 +15,15 @@ public class AttendedStudentList extends javax.swing.JFrame {
     String user = "root";
     String password = "newpassword";
     
-    String subId = "E-xam//?:91111158";
+    String subId;
     
     String mobile;
     String name;
     int roll;
+    private String mobileSelected;
 
-    public AttendedStudentList() {
+    public AttendedStudentList(String subId) {
+        this.subId = subId;
         initComponents();
         connect();
         getStudentDetails();
@@ -73,8 +75,8 @@ public class AttendedStudentList extends javax.swing.JFrame {
     public void getSelectedItem(){
         int column = 2;
         int row = table.getSelectedRow();
-        String value = table.getModel().getValueAt(row, column).toString();
-        System.out.println(value);
+        mobileSelected = table.getModel().getValueAt(row, column).toString();
+        System.out.println(mobileSelected);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -93,6 +95,8 @@ public class AttendedStudentList extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(400, 300, 0, 0));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -199,16 +203,11 @@ public class AttendedStudentList extends javax.swing.JFrame {
 
     private void validateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateButtonActionPerformed
         getSelectedItem();
+        new validateWrittenExam(subId, mobileSelected).setVisible(true);
+        dispose();
     }//GEN-LAST:event_validateButtonActionPerformed
 
-    public static void main(String args[]) {
-      
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AttendedStudentList().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

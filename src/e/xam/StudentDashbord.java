@@ -78,7 +78,7 @@ public class StudentDashbord extends javax.swing.JFrame {
     public void checkRoomAvailable(){
         try {
             Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM `StudentWrittenAnswer` WHERE subId = '"+examId+"'");
+            ResultSet rs = s.executeQuery("SELECT * FROM `subjectDetails` WHERE subId = '"+examId+"'");
             if(rs.next()){
                 checkAlreadyAttempted();
             }else{
