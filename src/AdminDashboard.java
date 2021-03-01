@@ -5,13 +5,14 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 
 
 
 public class AdminDashboard extends javax.swing.JFrame {
     Connection con; 
-    int teacherId = 3;
+    int teacherId = 1;
     String teacherName;
     
     private String url = "jdbc:mysql://localhost/E-xam";
@@ -100,10 +101,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/myprofile.png")); // NOI18N
-        jButton1.setText("My Profile");
+        jButton1.setText("Validate marks");
 
         uploadButton.setBackground(new java.awt.Color(255, 255, 255));
         uploadButton.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -161,7 +162,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,7 +180,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        dispose();
+       int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to exit?");
+        if(confirm == JOptionPane.YES_OPTION){
+            dispose();
+        }
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
