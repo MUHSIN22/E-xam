@@ -1,4 +1,7 @@
+package adminpanels;
 
+
+import adminpanels.QuestionUploadForm;
 import e.xam.LoginForm;
 import e.xam.OtpGenerator;
 import java.sql.DriverManager;
@@ -334,7 +337,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
         );
 
         pack();

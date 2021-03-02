@@ -1,25 +1,94 @@
 package e.xam;
 
+/*import java.sql.DriverManager;*/
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 public class StudentDashbord extends javax.swing.JFrame {
     
     String mobile;
+    
+    Connection con = null;
+    
+    String name;
+    
+    String url = "jdbc:mysql://localhost/E-xam";
+    String user = "root";
+    String password = "newpassword";
+    
+    String examId;
   
     public StudentDashbord(String mobile) {
         initComponents();
         this.mobile = mobile;
-        new LoginForm(null).connect();
+        connect();
         System.out.println(this.mobile);
         examIdField.setVisible(false);
         doneButton.setVisible(false);
         examIdLable.setVisible(false);
+        getStudentDetails();
+    }
+    public void connect(){//Function implement connection to database in loginform
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            System.out.println("connected");
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    private StudentDashbord() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void getStudentDetails(){
+        Statement s = null;
+        ResultSet rs = null;
+        try {
+            s = con.createStatement();
+            rs = s.executeQuery("SELECT * FROM `studentDetails` WHERE mobile = '"+mobile+"'");
+            rs.next();
+            name = rs.getString("name");
+            
+            nameLabel.setText(name);
+            
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-   
+    public void checkAlreadyAttempted(){
+        try {
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM `StudentWrittenAnswer` WHERE subId = '"+examId+"' AND mobileNumber = '"+mobile+"'");
+            if(rs.next()){
+                JOptionPane.showMessageDialog(this, "You are already attempted this exam!!");
+            }else{
+                new StudentAnswerForm(mobile,examId).setVisible(true);
+                dispose();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void checkRoomAvailable(){
+        try {
+            Statement s = con.createStatement();
+            ResultSet rs = s.executeQuery("SELECT * FROM `subjectDetails` WHERE subId = '"+examId+"'");
+            if(rs.next()){
+                checkAlreadyAttempted();
+            }else{
+                JOptionPane.showMessageDialog(this, "Room ID not available!!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -32,6 +101,7 @@ public class StudentDashbord extends javax.swing.JFrame {
         examIdField = new javax.swing.JTextField();
         doneButton = new javax.swing.JButton();
         examIdLable = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(600, 300, 0, 0));
@@ -117,13 +187,21 @@ public class StudentDashbord extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
+        nameLabel.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        nameLabel.setText("Student Name");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(nameLabel)))
                 .addGap(37, 37, 37)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -134,6 +212,8 @@ public class StudentDashbord extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nameLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -166,9 +246,10 @@ public class StudentDashbord extends javax.swing.JFrame {
     }//GEN-LAST:event_attendButtonActionPerformed
 
     private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
-        String examId = examIdField.getText();
-        new StudentAnswerForm(mobile,examId).setVisible(true);
-        dispose();
+        examId = examIdField.getText();
+        examId = examId.replaceAll(" ", "");
+        checkRoomAvailable();
+        
     }//GEN-LAST:event_doneButtonActionPerformed
 
   
@@ -183,5 +264,6 @@ public class StudentDashbord extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }

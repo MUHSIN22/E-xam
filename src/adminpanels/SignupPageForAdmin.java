@@ -11,14 +11,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+
 import javax.swing.JOptionPane;
 
 //nothing
 public class SignupPageForAdmin extends javax.swing.JFrame {
  String OTP;
-    /**
-     * Creates new form SignupPageForAdmin
-     */
+    
     public SignupPageForAdmin() {
         initComponents();
         connect ();
@@ -459,6 +458,8 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                  String OTPCheck = otptxtfield.getText();
         if(OTPCheck.equals(OTP)){
             JOptionPane.showMessageDialog(this, "Otp verified Successfully");
+            new AdminDashboard().setVisible(true);
+            dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
             otptxtfield.setText("");

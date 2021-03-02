@@ -1,3 +1,5 @@
+package adminpanels;
+
 
 import e.xam.LoginForm;
 import java.sql.DriverManager;
@@ -5,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 
 
@@ -56,7 +59,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         teacherNameLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        validateMarkButton = new javax.swing.JButton();
         uploadButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
@@ -99,11 +102,16 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/myprofile.png")); // NOI18N
-        jButton1.setText("My Profile");
+        validateMarkButton.setBackground(new java.awt.Color(255, 255, 255));
+        validateMarkButton.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        validateMarkButton.setForeground(new java.awt.Color(0, 0, 0));
+        validateMarkButton.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/myprofile.png")); // NOI18N
+        validateMarkButton.setText("Validate marks");
+        validateMarkButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validateMarkButtonActionPerformed(evt);
+            }
+        });
 
         uploadButton.setBackground(new java.awt.Color(255, 255, 255));
         uploadButton.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -142,7 +150,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(validateMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,13 +163,13 @@ public class AdminDashboard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validateMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(uploadButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -179,13 +187,21 @@ public class AdminDashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        dispose();
+       int confirm = JOptionPane.showConfirmDialog(this, "Are you sure to exit?");
+        if(confirm == JOptionPane.YES_OPTION){
+            dispose();
+        }
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
         new SubjectDetailsForm(teacherId).setVisible(true);
         dispose();
     }//GEN-LAST:event_uploadButtonActionPerformed
+
+    private void validateMarkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validateMarkButtonActionPerformed
+        new roomList(teacherId).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_validateMarkButtonActionPerformed
 
    
     public static void main(String args[]) {
@@ -199,7 +215,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -207,5 +222,6 @@ public class AdminDashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel teacherNameLabel;
     private javax.swing.JButton uploadButton;
+    private javax.swing.JButton validateMarkButton;
     // End of variables declaration//GEN-END:variables
 }

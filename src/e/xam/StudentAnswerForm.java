@@ -70,7 +70,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
        Statement st = null;
         try {
             st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT MAX(questionId) FROM questions");
+            ResultSet rs = st.executeQuery("SELECT MAX(questionId) FROM questions where subId = '"+examId+"'");
             rs.next();
             maxQuestionId = rs.getInt(1);
         } catch (SQLException ex) {
@@ -109,6 +109,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
    }
    public void selectAndShow(){
        if(questionId < maxQuestionId){
+           System.out.println(questionId +" max"+maxQuestionId);
            selectQuestions();
            showQuestions();
        }else if(questionId == maxQuestionId){
@@ -119,6 +120,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "You are finished the exam");
            setStudentMark();
            dispose();
+           new StudentWrittenExam(mobile,examId).setVisible(true);
        }
    }
    public void getStudentDetails(){//get deatials of attempted student from database
