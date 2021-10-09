@@ -25,8 +25,8 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     PreparedStatement pst;
      public void connect(){
      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         con= DriverManager.getConnection("jdbc:mysql://localhost/examadmin","root","Password@66");
+         Class.forName("com.mysql.cj.jdbc.Driver");
+         con= DriverManager.getConnection("jdbc:mysql://localhost/E-xam","root","password");
      } catch (ClassNotFoundException ex) {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      } catch (SQLException ex) {

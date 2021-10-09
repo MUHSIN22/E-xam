@@ -17,13 +17,14 @@ public class StudentDashbord extends javax.swing.JFrame {
     
     String url = "jdbc:mysql://localhost/E-xam";
     String user = "root";
-    String password = "newpassword";
+    String password = "password";
     
     String examId;
   
     public StudentDashbord(String mobile) {
         initComponents();
         this.mobile = mobile;
+        System.out.println("27:studentDashbord"+mobile+" "+this.mobile);
         connect();
         System.out.println(this.mobile);
         examIdField.setVisible(false);
@@ -33,7 +34,7 @@ public class StudentDashbord extends javax.swing.JFrame {
     }
     public void connect(){//Function implement connection to database in loginform
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -23,8 +23,8 @@ public final class RegistrationForm extends javax.swing.JFrame {
 
     public void connect(){ //Function for connection of database
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","newpassword");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","password");
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -44,16 +44,19 @@ public final class RegistrationForm extends javax.swing.JFrame {
             
                     //Insert values into table studentDetails in database E-xam 
                     PreparedStatement ps = con.prepareStatement("insert into studentDetails values(?,?,?,?,?)");
-            
+                    
+                    System.out.println(name+" "+rollNo+" "+semester+" "+department+" "+mobile);
                     ps.setString(1, name);
                     ps.setInt(2, rollNo);
                     ps.setString(3, semester);
                     ps.setString(4, department);
                     ps.setString(5, mobile);
                     int k = ps.executeUpdate();
-            
+                        System.out.println("this is k"+k);
+                    
             
                     if(k == 1){//Check whether added to database
+                        System.out.println("inside the condition");
                         dispose();
                     }else{
                         JOptionPane.showMessageDialog(this, "Something went wrong. Please try again");

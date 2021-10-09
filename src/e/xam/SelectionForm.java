@@ -5,6 +5,9 @@
  */
 package e.xam;
 
+import adminpanels.LoginPageForAdmin;
+import adminpanels.SignupPageForAdmin;
+
 /**
  *
  * @author hackphiles
@@ -53,6 +56,11 @@ public class SelectionForm extends javax.swing.JFrame {
         teacherAlreadyButton.setForeground(new java.awt.Color(254, 254, 254));
         teacherAlreadyButton.setText("Already have an account");
         teacherAlreadyButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        teacherAlreadyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teacherAlreadyButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(teacherAlreadyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, 240, 60));
 
         studentAlreadyButton.setBackground(new java.awt.Color(2, 43, 149));
@@ -84,6 +92,11 @@ public class SelectionForm extends javax.swing.JFrame {
         teacherCreateButton.setForeground(new java.awt.Color(254, 254, 254));
         teacherCreateButton.setText("Create new account");
         teacherCreateButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        teacherCreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                teacherCreateButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(teacherCreateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 480, 240, 60));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -146,7 +159,6 @@ public class SelectionForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/BG_Hashtech_OutSystems.jpg")); // NOI18N
         jLabel1.setText("|");
         jLabel1.setPreferredSize(new java.awt.Dimension(1204, 600));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 649));
@@ -165,6 +177,18 @@ public class SelectionForm extends javax.swing.JFrame {
         regForm.setVisible(true);
         dispose();
     }//GEN-LAST:event_studentCreateButtonActionPerformed
+
+    private void teacherAlreadyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherAlreadyButtonActionPerformed
+        LoginPageForAdmin loginAdmin = new LoginPageForAdmin();
+        loginAdmin.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_teacherAlreadyButtonActionPerformed
+
+    private void teacherCreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherCreateButtonActionPerformed
+        SignupPageForAdmin signUpForm = new SignupPageForAdmin();
+        signUpForm.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_teacherCreateButtonActionPerformed
 
     
     public static void main(String args[]) {

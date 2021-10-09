@@ -27,8 +27,8 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     
     public void connect(){
      try {
-         Class.forName("com.mysql.jdbc.Driver");
-         con= DriverManager.getConnection("jdbc:mysql://localhost/examadmin","root","Password@66");
+         Class.forName("com.mysql.cj.jdbc.Driver");
+         con= DriverManager.getConnection("jdbc:mysql://localhost/E-xam","root","password");
      } catch (ClassNotFoundException ex) {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
      } catch (SQLException ex) {
@@ -385,7 +385,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
              EmailFieldAdmin.setText("");
              
          } else{ 
-         pst =con.prepareStatement("insert into signupforadmin(firstname,lastname,email,phone,)values(?,?,?,?,)");
+         pst =con.prepareStatement("INSERT INTO teacherDetails VALUES(?,?,?,?)");
          pst.setString(1, firstname);
          pst.setString(2, lastname);
          pst.setString(3, email);
@@ -395,16 +395,8 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                
          if (k==1){
              JOptionPane.showMessageDialog(this,"record added successfully");
-             
-             FirstNameFieldAdmin.setText("");
-             LastNameFieldAdmin.setText("");
-             EmailFieldAdmin.setText("");
-             mobiletxtfield.setText("");
-             
-             otptxtfield.setText(" ");
-             
              FirstNameFieldAdmin.requestFocus();
-             new LoginPageForAdmin().setVisible(true);
+             new AdminDashboard().setVisible(true);
              
          }else{
              JOptionPane.showMessageDialog(this,"record added failed");
@@ -412,7 +404,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
          }
     }
     else{
-         JOptionPane.showMessageDialog(this, "entered OTP is incorrecr");
+         JOptionPane.showMessageDialog(this, "entered OTP is incorrect");
          }
          
      } catch (SQLException ex) {
@@ -458,8 +450,6 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                  String OTPCheck = otptxtfield.getText();
         if(OTPCheck.equals(OTP)){
             JOptionPane.showMessageDialog(this, "Otp verified Successfully");
-            new AdminDashboard().setVisible(true);
-            dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
             otptxtfield.setText("");

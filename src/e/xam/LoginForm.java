@@ -27,7 +27,7 @@ public class LoginForm extends javax.swing.JFrame {
     RegistrationForm regForm = new RegistrationForm();
     
     public LoginForm(String mobile) {
-        this.password = "newpassword";
+        this.password = "password";
         initComponents();
         connect();//Connection of database;
         fillMobileLabel.setVisible(false);
@@ -36,7 +36,7 @@ public class LoginForm extends javax.swing.JFrame {
     }
     public void connect(){//Function implement connection to database in loginform
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         }

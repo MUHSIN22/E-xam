@@ -19,7 +19,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     
     private String url = "jdbc:mysql://localhost/E-xam";
     private String user = "root";
-    private String password = "newpassword";
+    private String password = "password";
     
     public AdminDashboard() {
         initComponents();
@@ -42,7 +42,7 @@ public class AdminDashboard extends javax.swing.JFrame {
     public void getTeacherDeatails(){
         try {
             Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM teachersDetails WHERE Id = '"+teacherId+"'");
+            ResultSet rs = s.executeQuery("SELECT * FROM teacherDetails WHERE Id = '"+teacherId+"'");
             rs.next();
             teacherName = rs.getString("name");
             rs.close();
