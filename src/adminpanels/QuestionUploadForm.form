@@ -93,7 +93,7 @@
                                   <Component id="optionOneInput" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="580" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

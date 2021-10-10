@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package adminpanels;
+import e.xam.SelectionForm;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -111,6 +112,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        backButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -157,6 +159,24 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("\"Tell me and I forget.");
 
+        backButton.setBackground(new java.awt.Color(30, 61, 89));
+        backButton.setFont(new java.awt.Font("Ubuntu", 1, 22)); // NOI18N
+        backButton.setForeground(new java.awt.Color(254, 254, 254));
+        backButton.setIcon(new javax.swing.ImageIcon("/home/manshad/Desktop/exm/E-xam/src/e/xam/newpackage/back button 20px (1).png")); // NOI18N
+        backButton.setText(" back");
+        backButton.setToolTipText("");
+        backButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        backButton.setBorderPainted(false);
+        backButton.setContentAreaFilled(false);
+        backButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        backButton.setDefaultCapable(false);
+        backButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -179,11 +199,17 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                                     .addComponent(jLabel10)))
                             .addComponent(jLabel8))))
                 .addGap(116, 116, 116))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(backButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+                .addGap(29, 29, 29)
+                .addComponent(backButton)
+                .addGap(108, 108, 108)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
@@ -195,7 +221,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -574,6 +600,12 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EmailFieldAdminActionPerformed
 
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        new SelectionForm().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -614,6 +646,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField FirstNameFieldAdmin;
     private javax.swing.JTextField LastNameFieldAdmin;
     private javax.swing.JButton LogInButtonAdmin;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
