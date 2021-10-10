@@ -282,11 +282,6 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
         try {
             String OTPCheck = TxtloginOtp.getText();
             
-            
-            
-            
-            
-            
             if(OTPCheck.equals(OTP)){
                 JOptionPane.showMessageDialog(this, "login Successfully");
                 new AdminDashboard().setVisible(true);
@@ -342,6 +337,8 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
          String OTPCheck = TxtloginOtp.getText();
         if(OTPCheck.equals(OTP)){
             JOptionPane.showMessageDialog(this, "Otp verified Successfully");
+            new AdminDashboard().setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
             TxtloginOtp.setText("");

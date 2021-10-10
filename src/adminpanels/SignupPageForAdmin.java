@@ -426,7 +426,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
              EmailFieldAdmin.setText("");
              
          } else{ 
-             
+         
             pst =con.prepareStatement("INSERT INTO teacherDetails VALUES(?,?,?,?)");
             pst.setString(1, firstname);
             pst.setString(2, lastname);
@@ -514,13 +514,59 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_sendotpbtnActionPerformed
 
     private void verifyotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyotpbtnActionPerformed
-        String OTPCheck = otptxtfield.getText();
-        if(OTPCheck.equals(OTP)){
-            JOptionPane.showMessageDialog(this, "Otp verified Successfully");
-        }else{
-            JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
-            otptxtfield.setText("");
+//        String OTPCheck = otptxtfield.getText();
+//        if(OTPCheck.equals(OTP)){
+//            JOptionPane.showMessageDialog(this, "Otp verified Successfully");
+//            
+//        }else{
+//            JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
+//            otptxtfield.setText("");
+//        }
+
+        try {
+        
+         String OTPCheck = otptxtfield.getText();
+         String firstname=FirstNameFieldAdmin.getText();
+         String lastname=LastNameFieldAdmin.getText();
+         String email=EmailFieldAdmin.getText();
+         String phone=mobiletxtfield.getText();
+         
+         
+    if(OTPCheck.equals(OTP)){
+         boolean ap =isEmailValid(email);
+         if(ap==false){
+             JOptionPane.showMessageDialog(this, "enter the valied email");
+             EmailFieldAdmin.setText("");
+             
+         } else{ 
+         
+            pst =con.prepareStatement("INSERT INTO teacherDetails VALUES(?,?,?,?)");
+            pst.setString(1, firstname);
+            pst.setString(2, lastname);
+            pst.setString(3, email);
+            pst.setString(4, phone);
+
+            int k= pst.executeUpdate();
+               
+            if (k==1){
+                JOptionPane.showMessageDialog(this,"The OTP verification successfully finished \n record added successfully");
+                FirstNameFieldAdmin.requestFocus();
+                new AdminDashboard().setVisible(true);
+
+            }else{
+                JOptionPane.showMessageDialog(this,"record added failed");
+            }
+         }
+    }
+    else{
+         JOptionPane.showMessageDialog(this, "entered OTP is incorrect");
         }
+         
+     } catch (SQLException ex) {
+         Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    
+
     }//GEN-LAST:event_verifyotpbtnActionPerformed
 
     private void EmailFieldAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmailFieldAdminActionPerformed
