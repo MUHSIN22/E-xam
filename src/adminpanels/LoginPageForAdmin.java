@@ -289,7 +289,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
             
             if(OTPCheck.equals(OTP)){
                 JOptionPane.showMessageDialog(this, "login Successfully");
-                new adminhome().setVisible(true);
+                new AdminDashboard().setVisible(true);
                 this.dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "error! please try again");
