@@ -206,7 +206,12 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         subCodeLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-
+	
+	group.add(optionOne);
+	group.add(optionTwo);
+	group.add(optionThree);
+	group.add(optionFour);
+	
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(300, 200, 0, 0));
         setResizable(false);

@@ -61,7 +61,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         teacherNameLabel = new javax.swing.JLabel();
         validateMarkButton = new javax.swing.JButton();
         uploadButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        markSheetButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
@@ -74,8 +74,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(85, 168, 251));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/admin.png")); // NOI18N
 
         teacherNameLabel.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         teacherNameLabel.setForeground(new java.awt.Color(0, 0, 0));
@@ -105,7 +103,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         validateMarkButton.setBackground(new java.awt.Color(255, 255, 255));
         validateMarkButton.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         validateMarkButton.setForeground(new java.awt.Color(0, 0, 0));
-        validateMarkButton.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/myprofile.png")); // NOI18N
         validateMarkButton.setText("Validate marks");
         validateMarkButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,7 +113,6 @@ public class AdminDashboard extends javax.swing.JFrame {
         uploadButton.setBackground(new java.awt.Color(255, 255, 255));
         uploadButton.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         uploadButton.setForeground(new java.awt.Color(0, 0, 0));
-        uploadButton.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/upload.png")); // NOI18N
         uploadButton.setText("Upload Questions");
         uploadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,16 +120,19 @@ public class AdminDashboard extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
-        jButton3.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/marksheet.png")); // NOI18N
-        jButton3.setText("Mark Sheet");
+        markSheetButton.setBackground(new java.awt.Color(255, 255, 255));
+        markSheetButton.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
+        markSheetButton.setForeground(new java.awt.Color(0, 0, 0));
+        markSheetButton.setText("Mark Sheet");
+        markSheetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markSheetButtonActionPerformed(evt);
+            }
+        });
 
         exitButton.setBackground(new java.awt.Color(255, 255, 255));
         exitButton.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         exitButton.setForeground(new java.awt.Color(217, 2, 2));
-        exitButton.setIcon(new javax.swing.ImageIcon("/home/hackphiles/Documents/E-xam/E-xam/src/e/xam/newpackage/exit.png")); // NOI18N
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,7 +148,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(markSheetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(validateMarkButton, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +167,7 @@ public class AdminDashboard extends javax.swing.JFrame {
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(markSheetButton, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
@@ -203,6 +202,10 @@ public class AdminDashboard extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_validateMarkButtonActionPerformed
 
+    private void markSheetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markSheetButtonActionPerformed
+       
+    }//GEN-LAST:event_markSheetButtonActionPerformed
+
    
     public static void main(String args[]) {
         
@@ -215,11 +218,11 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton markSheetButton;
     private javax.swing.JLabel teacherNameLabel;
     private javax.swing.JButton uploadButton;
     private javax.swing.JButton validateMarkButton;
