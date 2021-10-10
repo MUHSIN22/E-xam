@@ -159,6 +159,7 @@ public class SelectionForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/manshad/Desktop/exm/E-xam/src/e/xam/newpackage/BG_Hashtech_OutSystems.jpg")); // NOI18N
         jLabel1.setText("|");
         jLabel1.setPreferredSize(new java.awt.Dimension(1204, 600));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 649));

@@ -313,6 +313,9 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="fe" green="fe" red="fe" type="rgb"/>
         </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="2" name="/home/manshad/Desktop/exm/E-xam/src/e/xam/newpackage/BG_Hashtech_OutSystems.jpg"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="|"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1204, 600]"/>
