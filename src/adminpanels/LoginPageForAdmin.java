@@ -275,6 +275,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logInButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonadminActionPerformed
