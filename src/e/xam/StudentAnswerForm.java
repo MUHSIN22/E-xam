@@ -32,7 +32,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
     private int rollNo;//for get student roll number from database
     
     private String examName,subName,subCode;
-    private int teacherId;
+    private String teacherId;
     
     public StudentAnswerForm(String mobile,String examId) {
         this.mobile = mobile;
@@ -55,7 +55,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
     public void connect(){ //Function for connection of database
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","newpassword");
+            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","password");
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -119,7 +119,6 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "You are finished the exam");
            setStudentMark();
            dispose();
-           new StudentWrittenExam(mobile,examId).setVisible(true);
        }
    }
    public void getStudentDetails(){//get deatials of attempted student from database
@@ -137,13 +136,11 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
    }
    public void setStudentMark(){
         try {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO `studentScores` (`sino`, `name`, `rollno`, `score`, `studentMobile`, `examId`) VALUES (NULL, ?, ? , ? , ? , ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO `studentScores` (`sino`, `score`, `studentMobile`, `examId`) VALUES (NULL, ?, ? , ?)");
             
-            ps.setString(1, name);
-            ps.setInt(2, rollNo);
-            ps.setInt(3, score);
-            ps.setString(4, mobile);
-            ps.setString(5, examId);
+            ps.setInt(1, score);
+            ps.setString(2, mobile);
+            ps.setString(3, examId);
             int k = ps.executeUpdate();
             if(k == 1){
                 System.out.println("Added to database ");
@@ -165,7 +162,7 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
             examName = rs.getString("examName");
             subName = rs.getString("subName");
             subCode = rs.getString("subCode");
-            teacherId = rs.getInt("teacherId");
+            teacherId = rs.getString("teacherId");
             
         } catch (SQLException ex) {
             Logger.getLogger(StudentAnswerForm.class.getName()).log(Level.SEVERE, null, ex);
