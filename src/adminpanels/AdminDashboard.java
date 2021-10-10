@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 public class AdminDashboard extends javax.swing.JFrame {
     Connection con; 
-    int teacherId = 3;
+    String teacherId = "8606113002";
     String teacherName;
     
     private String url = "jdbc:mysql://localhost/E-xam";
@@ -42,9 +42,9 @@ public class AdminDashboard extends javax.swing.JFrame {
     public void getTeacherDeatails(){
         try {
             Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM teacherDetails WHERE Id = '"+teacherId+"'");
+            ResultSet rs = s.executeQuery("SELECT * FROM teacherDetails WHERE phone = '"+teacherId+"'");
             rs.next();
-            teacherName = rs.getString("name");
+            teacherName = rs.getString("firstname");
             rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(AdminDashboard.class.getName()).log(Level.SEVERE, null, ex);

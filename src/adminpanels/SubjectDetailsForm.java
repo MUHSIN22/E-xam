@@ -17,25 +17,24 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
     
     private String id;
     private int firstClick = 0;
-    private int teacherId;
+    private String teacherId;
     private String subId;
     
     private String url = "jdbc:mysql://localhost/E-xam";
     private String user = "root";
-    private String password = "newpassword";
+    private String password = "password";
     
-    private String examName,subName,subCode,teacherName,singleChoice,writtenNum;
+    private String examName,subName,subCode,teacherName,singleChoice;
     
     private boolean empty = false;
     
-    public SubjectDetailsForm(int teacherId) {
+    public SubjectDetailsForm(String teacherId) {
         initComponents();
         this.teacherId = teacherId;
         cautionExamName.setVisible(false);
         cautionSubjectName.setVisible(false);
         cautionSubCode.setVisible(false);
         cautionSingleChoice.setVisible(false);
-        cautionMultipleChoice.setVisible(false);
         connect();
         getTeacherDetails();
     }
@@ -65,16 +64,15 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
     }
     public void insertData(){
         
-        String query = "INSERT INTO `subjectDetails` (`subId`, `examName`, `subName`, `subCode`, `teacherId`,`singleChoice`,`multipleChoice`) VALUES (?,?,?,?,?,?,?)";
+        String query = "INSERT INTO `subjectDetails` (`subId`, `examName`, `subName`, `subCode`, `teacherId`,`singleChoice`) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, subId);
             ps.setString(2, examName);
             ps.setString(3 , subName);
             ps.setString(4, subCode);
-            ps.setInt(5, teacherId);
+            ps.setString(5, teacherId);
             ps.setInt(6,Integer.parseInt(singleChoice));
-            ps.setInt(7, Integer.parseInt(writtenNum));
             int k = ps.executeUpdate();
             if(k == 1){
                 System.out.println("succefully added");
@@ -91,7 +89,6 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         subName = subjectField.getText();
         subCode = subjectCodeField.getText();
         singleChoice = singleChoiceNumField.getText();
-        writtenNum = writtenNumField.getText();
         if(examName.equals("")){
             cautionExamName.setVisible(true);
             empty = true;
@@ -104,9 +101,6 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         }else if(singleChoice.equalsIgnoreCase("")){
             cautionSingleChoice.setVisible(true);
             empty = true;
-        }else if(writtenNum.equals("")){
-            cautionMultipleChoice.setVisible(true);
-            empty = true;
         }
         else{
             generateId();
@@ -114,14 +108,14 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         }
     }
     public void getTeacherDetails(){
-        String query = "SELECT * FROM teachersDetails WHERE Id = '"+teacherId+"'";
+        String query = "SELECT * FROM teacherDetails WHERE phone = '"+teacherId+"'";
         try {
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(query);
             
             rs.next();
             
-            teacherName = rs.getString("name");
+            teacherName = rs.getString("firstname");
             
             System.out.println(teacherName);
             
@@ -152,10 +146,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         cautionExamName = new javax.swing.JLabel();
         singleChoiceNumField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        writtenNumField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         cautionSingleChoice = new javax.swing.JLabel();
-        cautionMultipleChoice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(500, 200, 0, 0));
@@ -216,16 +207,9 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         jLabel7.setText("Number single choice questions");
 
-        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        jLabel8.setText("Number of written questions");
-
         cautionSingleChoice.setFont(new java.awt.Font("Ubuntu", 2, 14)); // NOI18N
         cautionSingleChoice.setForeground(java.awt.Color.red);
         cautionSingleChoice.setText("Please fill this field!! ");
-
-        cautionMultipleChoice.setFont(new java.awt.Font("Ubuntu", 2, 14)); // NOI18N
-        cautionMultipleChoice.setForeground(java.awt.Color.red);
-        cautionMultipleChoice.setText("Please fill this field!! ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,18 +233,16 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(cautionSubCode)
-                                            .addComponent(jLabel4))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(writtenNumField)))
+                                            .addComponent(jLabel4)
+                                            .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGap(501, 501, 501)
                                         .addComponent(generateIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2)
                                     .addComponent(examNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)
                                     .addComponent(cautionExamName)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
@@ -269,11 +251,8 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(99, 99, 99)
-                                        .addComponent(jLabel8))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(cautionSingleChoice)
-                                        .addGap(201, 201, 201)
-                                        .addComponent(cautionMultipleChoice)))
+                                        .addComponent(jLabel1))
+                                    .addComponent(cautionSingleChoice))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(259, 259, 259)
@@ -311,21 +290,15 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(writtenNumField, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                    .addComponent(singleChoiceNumField))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(singleChoiceNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cautionSingleChoice)
-                    .addComponent(cautionMultipleChoice))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(generateIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cautionSingleChoice)
+                .addGap(36, 36, 36)
+                .addComponent(generateIdButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(196, 196, 196))
         );
 
@@ -337,7 +310,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, Short.MAX_VALUE)
         );
 
         pack();
@@ -363,7 +336,7 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
             }
         }else{
             try {
-                new QuestionUploadForm(subId).setVisible(true);
+                new QuestionUploadForm(subId,teacherId).setVisible(true);
                 dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(SubjectDetailsForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -385,7 +358,6 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cautionExamName;
-    private javax.swing.JLabel cautionMultipleChoice;
     private javax.swing.JLabel cautionSingleChoice;
     private javax.swing.JLabel cautionSubCode;
     private javax.swing.JLabel cautionSubjectName;
@@ -399,12 +371,10 @@ public class SubjectDetailsForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField singleChoiceNumField;
     private javax.swing.JTextField subjectCodeField;
     private javax.swing.JTextField subjectField;
     private javax.swing.JLabel teacherNameLabel;
-    private javax.swing.JTextField writtenNumField;
     // End of variables declaration//GEN-END:variables
 }

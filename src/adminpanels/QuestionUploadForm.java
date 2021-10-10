@@ -23,16 +23,17 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
     int radioFind; //For find which radio button is checked
     boolean fieldEmpty = false;//for check any fields are empty
     String question,optionOne,optionTwo,optionThree,optionFour;//variables for save questions and options
-    String subId;
+    String subId,teacherId;
     int maxQuestionNo;
     ButtonGroup group = new ButtonGroup();
     int questionId = 0;
     
-    public QuestionUploadForm(String subId) throws SQLException {
+    public QuestionUploadForm(String subId,String teacherId) throws SQLException {
         initComponents();
         connect();
         questionId();
         this.subId = subId;
+        this.teacherId = teacherId;
         maxQuestion();
         System.out.println(maxQuestionNo);
     }
@@ -40,7 +41,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
     public void connect(){ //Function for connection of database
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","newpassword");
+            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","password");
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -71,7 +72,7 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
             
             
             try {
-                PreparedStatement ps = con.prepareStatement("insert into questions values(NULL,?,?,?,?,?,?,?,?)");
+                PreparedStatement ps = con.prepareStatement("insert into questions values(?,?,?,?,?,?,?,?)");
                 ps.setInt(1,questionId);
                 ps.setString(2, question);
                 ps.setString(3, optionOne);
@@ -122,7 +123,6 @@ public final class QuestionUploadForm extends javax.swing.JFrame {
             findRadioAndExecute();
             dispose();
             JOptionPane.showMessageDialog(this, questionId-1+" Single choice question uploaded!");
-            new uploadWrittenQuestions(subId).setVisible(true);
         }
     }
     public void findRadioAndExecute(){

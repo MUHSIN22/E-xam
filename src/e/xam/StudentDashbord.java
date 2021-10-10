@@ -62,34 +62,34 @@ public class StudentDashbord extends javax.swing.JFrame {
             Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void checkAlreadyAttempted(){
-        try {
-            Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM `StudentWrittenAnswer` WHERE subId = '"+examId+"' AND mobileNumber = '"+mobile+"'");
-            if(rs.next()){
-                JOptionPane.showMessageDialog(this, "You are already attempted this exam!!");
-            }else{
-                new StudentAnswerForm(mobile,examId).setVisible(true);
-                dispose();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    public void checkRoomAvailable(){
-        try {
-            Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery("SELECT * FROM `subjectDetails` WHERE subId = '"+examId+"'");
-            if(rs.next()){
-                checkAlreadyAttempted();
-            }else{
-                JOptionPane.showMessageDialog(this, "Room ID not available!!");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
+//    public void checkAlreadyAttempted(){
+//        try {
+//            Statement s = con.createStatement();
+//            ResultSet rs = s.executeQuery("SELECT * FROM `StudentWrittenAnswer` WHERE subId = '"+examId+"' AND mobileNumber = '"+mobile+"'");
+//            if(rs.next()){
+//                JOptionPane.showMessageDialog(this, "You are already attempted this exam!!");
+//            }else{
+//                new StudentAnswerForm(mobile,examId).setVisible(true);
+//                dispose();
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    public void checkRoomAvailable(){
+//        try {
+//            Statement s = con.createStatement();
+//            ResultSet rs = s.executeQuery("SELECT * FROM `subjectDetails` WHERE subId = '"+examId+"'");
+//            if(rs.next()){
+//                checkAlreadyAttempted();
+//            }else{
+//                JOptionPane.showMessageDialog(this, "Room ID not available!!");
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(StudentDashbord.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -249,7 +249,9 @@ public class StudentDashbord extends javax.swing.JFrame {
     private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
         examId = examIdField.getText();
         examId = examId.replaceAll(" ", "");
-        checkRoomAvailable();
+        new StudentAnswerForm(mobile,examId).setVisible(true);
+        dispose();
+//        checkRoomAvailable();
         
     }//GEN-LAST:event_doneButtonActionPerformed
 

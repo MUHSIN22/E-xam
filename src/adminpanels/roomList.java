@@ -19,12 +19,12 @@ public class roomList extends javax.swing.JFrame {
     String user = "root";
     String password = "newpassword";
     
-    private int teacherId;
+    private String teacherId;
     
     String subId;
     String examName;
     
-    public roomList(int teacherId) {
+    public roomList(String teacherId) {
         this.teacherId = teacherId;
         initComponents();
         caution.setVisible(false);

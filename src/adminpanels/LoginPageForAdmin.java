@@ -15,7 +15,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
    
 
     String OTP;
-     boolean verifyOtpFlag = false;
+    boolean verifyOtpFlag = false;
    
     public LoginPageForAdmin() {
         initComponents();
