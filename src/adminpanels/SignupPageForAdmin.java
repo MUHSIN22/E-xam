@@ -16,14 +16,15 @@ import javax.swing.JOptionPane;
 
 //nothing
 public class SignupPageForAdmin extends javax.swing.JFrame {
- String OTP;
-    
+    String OTP;
     public SignupPageForAdmin() {
         initComponents();
         connect ();
     }
-     Connection con;
-    PreparedStatement pst;
+    Connection con = null;
+    Statement st = null;
+    ResultSet rs = null;
+    PreparedStatement pst= null;
     
     public void connect(){
      try {
@@ -36,23 +37,64 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
      }
     }
      public static boolean isPhoneValid(String phone) {
-    String regex = "\\d{10}";
-      //Creating a pattern object
-      Pattern pattern = Pattern.compile(regex);
-      //Creating a Matcher object
-      Matcher matcher = pattern.matcher(phone);
-      return matcher.matches();
+            String regex = "\\d{10}";
+            //Creating a pattern object
+            Pattern pattern = Pattern.compile(regex);
+            //Creating a Matcher object
+            Matcher matcher = pattern.matcher(phone);
+            return matcher.matches();
      }
     
     
     
+     public boolean isEmailAlreadyExist(){
+           
+           String email=EmailFieldAdmin.getText(); 
+           String query = "SELECT * FROM teacherDetails WHERE email = '"+email+"'";
+           
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+               return true;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        return false;
+     }
+     
+     
+      public boolean isPhoneAlreadyExist(){
+           
+           String phone=mobiletxtfield.getText();
+           String query = "SELECT * FROM teacherDetails WHERE phone = '"+phone+"'";
+           
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(query);
+            
+            if(rs.next()){
+               return true;
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+           
+        return false;
+     }
+     
     
     public static boolean isEmailValid(String email) {
-    String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-    Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-    Matcher matcher = pattern.matcher(email);
-    return matcher.matches();
-}
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(email);
+            return matcher.matches();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -371,7 +413,6 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
      try {
         
          String OTPCheck = otptxtfield.getText();
-         
          String firstname=FirstNameFieldAdmin.getText();
          String lastname=LastNameFieldAdmin.getText();
          String email=EmailFieldAdmin.getText();
@@ -385,27 +426,28 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
              EmailFieldAdmin.setText("");
              
          } else{ 
-         pst =con.prepareStatement("INSERT INTO teacherDetails VALUES(?,?,?,?)");
-         pst.setString(1, firstname);
-         pst.setString(2, lastname);
-         pst.setString(3, email);
-         pst.setString(4, phone);
-         
-         int k=pst.executeUpdate();
-               
-         if (k==1){
-             JOptionPane.showMessageDialog(this,"record added successfully");
-             FirstNameFieldAdmin.requestFocus();
-             new AdminDashboard().setVisible(true);
              
-         }else{
-             JOptionPane.showMessageDialog(this,"record added failed");
-         }
+            pst =con.prepareStatement("INSERT INTO teacherDetails VALUES(?,?,?,?)");
+            pst.setString(1, firstname);
+            pst.setString(2, lastname);
+            pst.setString(3, email);
+            pst.setString(4, phone);
+
+            int k= pst.executeUpdate();
+               
+            if (k==1){
+                JOptionPane.showMessageDialog(this,"record added successfully");
+                FirstNameFieldAdmin.requestFocus();
+                new AdminDashboard().setVisible(true);
+
+            }else{
+                JOptionPane.showMessageDialog(this,"record added failed");
+            }
          }
     }
     else{
          JOptionPane.showMessageDialog(this, "entered OTP is incorrect");
-         }
+        }
          
      } catch (SQLException ex) {
          Logger.getLogger(SignupPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
@@ -424,26 +466,51 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
 
     private void FirstmobiletxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstmobiletxtfieldActionPerformed
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_FirstmobiletxtfieldActionPerformed
 
     private void FirstotptxtfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstotptxtfieldActionPerformed
         // TODO add your handling code here:
+        System.out.println(mobiletxtfield.getText());
     }//GEN-LAST:event_FirstotptxtfieldActionPerformed
 
     private void sendotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendotpbtnActionPerformed
+                boolean isEmailAlreadyExist= isEmailAlreadyExist();
+                boolean isPhoneAlreadyExist= isPhoneAlreadyExist();
+                
                 String phone=mobiletxtfield.getText();
                 boolean pv=isPhoneValid(phone);
-                if(pv==false){
-                JOptionPane.showMessageDialog(this, "please enter valied phone number");
-                mobiletxtfield.setText("");
+                
+                if(isEmailAlreadyExist || isPhoneAlreadyExist){
+                
+                    JOptionPane.showMessageDialog(this, "The email or Phone number is already exist");
+                    mobiletxtfield.setText("");
+                    EmailFieldAdmin.setText("");
+                    
+                    
                 }else{
+                    
+                    if(pv==false){
+
+                        JOptionPane.showMessageDialog(this, "please enter valied phone number");
+                        mobiletxtfield.setText(""); 
+                        
+                    
+                    }else{
         
-                 OtpGenerator otpGenerator = new OtpGenerator();
-                
-                OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
-                
-                System.out.println("OTP="+OTP);
+                        OtpGenerator otpGenerator = new OtpGenerator();
+
+                        OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
+
+                        System.out.println("OTP="+OTP);
+                    
+                    }
+                    
+                    
+                    
                 }
+                
+                
     }//GEN-LAST:event_sendotpbtnActionPerformed
 
     private void verifyotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyotpbtnActionPerformed

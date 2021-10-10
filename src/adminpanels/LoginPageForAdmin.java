@@ -320,7 +320,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     private void SendotpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendotpActionPerformed
         try {
             String phone=Txtloginmobile.getText();
-            pst =con.prepareStatement("select * from signupforadmin where phone=?");
+            pst =con.prepareStatement("select * from teacherDetails where phone=?");
             pst.setString(1, phone);
             ResultSet rs=pst.executeQuery();
             OtpGenerator otpGenerator = new OtpGenerator();
@@ -328,8 +328,9 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
             
             OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
             System.out.println("OTP="+OTP);
+            
             }else{
-                JOptionPane.showMessageDialog(this, "The mobile number you entered is invalid");
+                JOptionPane.showMessageDialog(this, "The mobile number you entered is not registerd ,\n please check the mobile number or register with it");
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
