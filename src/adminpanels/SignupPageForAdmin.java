@@ -447,7 +447,7 @@ public class SignupPageForAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_sendotpbtnActionPerformed
 
     private void verifyotpbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyotpbtnActionPerformed
-                 String OTPCheck = otptxtfield.getText();
+        String OTPCheck = otptxtfield.getText();
         if(OTPCheck.equals(OTP)){
             JOptionPane.showMessageDialog(this, "Otp verified Successfully");
         }else{
