@@ -19,6 +19,7 @@ public final class StudentMarkList extends javax.swing.JFrame {
     private String user = "root";
     private String password = "password";
     String examId;
+    String teacherId;
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
@@ -61,7 +62,7 @@ public final class StudentMarkList extends javax.swing.JFrame {
         }
    }
    public void getExamDetails(){
-       String query = "SELECT examName,subName,subCode FROM subjectDetails WHERE subId='"+examId+"';";
+       String query = "SELECT examName,subName,subCode,teacherId FROM subjectDetails WHERE subId='"+examId+"';";
         try {
             st = con.createStatement();
             rs = st.executeQuery(query);
@@ -69,6 +70,8 @@ public final class StudentMarkList extends javax.swing.JFrame {
             String exmName = rs.getString("examName");
             String subName = rs.getString("subName");
             String subCode = rs.getString("subCode");
+            String teacherId = rs.getString("teacherId");
+            this.teacherId = teacherId;
             subjectName.setText(subName);
             subjectCode.setText(subCode);
             examName.setText(exmName);
@@ -94,6 +97,7 @@ public final class StudentMarkList extends javax.swing.JFrame {
         subjectName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         subjectCode = new javax.swing.JLabel();
+        goHomeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,6 +144,13 @@ public final class StudentMarkList extends javax.swing.JFrame {
         subjectCode.setForeground(new java.awt.Color(0, 0, 0));
         subjectCode.setText("jLabel4");
 
+        goHomeButton.setText("Go to home");
+        goHomeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goHomeButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,17 +165,19 @@ public final class StudentMarkList extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(subjectName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(subjectCode)
-                                .addGap(89, 89, 89)))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(goHomeButton)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(subjectName)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(subjectCode)
+                                    .addGap(89, 89, 89))))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,7 +195,9 @@ public final class StudentMarkList extends javax.swing.JFrame {
                     .addComponent(subjectCode))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(goHomeButton)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,12 +215,18 @@ public final class StudentMarkList extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void goHomeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goHomeButtonActionPerformed
+        new AdminDashboard(teacherId).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_goHomeButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel examName;
+    private javax.swing.JButton goHomeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

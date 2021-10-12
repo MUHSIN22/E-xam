@@ -14,15 +14,16 @@ import javax.swing.JOptionPane;
 
 public class AdminDashboard extends javax.swing.JFrame {
     Connection con; 
-    String teacherId = "8606113002";
+    String teacherId;
     String teacherName;
     
     private String url = "jdbc:mysql://localhost/E-xam";
     private String user = "root";
     private String password = "password";
     
-    public AdminDashboard() {
+    public AdminDashboard(String teacherId) {
         initComponents();
+        this.teacherId = teacherId;
         connect();
         getTeacherDeatails();
         teacherNameLabel.setText(teacherName);
@@ -191,18 +192,10 @@ public class AdminDashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_uploadButtonActionPerformed
 
     private void markSheetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markSheetButtonActionPerformed
-       
+       new MarkListSelctor().setVisible(true);
+       dispose();
     }//GEN-LAST:event_markSheetButtonActionPerformed
 
-   
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminDashboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
