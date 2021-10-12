@@ -275,6 +275,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logInButtonadminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonadminActionPerformed
@@ -282,14 +283,9 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
         try {
             String OTPCheck = TxtloginOtp.getText();
             
-            
-            
-            
-            
-            
             if(OTPCheck.equals(OTP)){
                 JOptionPane.showMessageDialog(this, "login Successfully");
-                new adminhome().setVisible(true);
+                new AdminDashboard().setVisible(true);
                 this.dispose();
             }else{
                 JOptionPane.showMessageDialog(this, "error! please try again");
@@ -320,7 +316,7 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
     private void SendotpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendotpActionPerformed
         try {
             String phone=Txtloginmobile.getText();
-            pst =con.prepareStatement("select * from signupforadmin where phone=?");
+            pst =con.prepareStatement("select * from teacherDetails where phone=?");
             pst.setString(1, phone);
             ResultSet rs=pst.executeQuery();
             OtpGenerator otpGenerator = new OtpGenerator();
@@ -328,8 +324,9 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
             
             OTP = otpGenerator.generateOtp(6);//Generate OTP of length 6
             System.out.println("OTP="+OTP);
+            
             }else{
-                JOptionPane.showMessageDialog(this, "The mobile number you entered is invalid");
+                JOptionPane.showMessageDialog(this, "The mobile number you entered is not registerd ,\n please check the mobile number or register with it");
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginPageForAdmin.class.getName()).log(Level.SEVERE, null, ex);
@@ -341,6 +338,8 @@ public class LoginPageForAdmin extends javax.swing.JFrame {
          String OTPCheck = TxtloginOtp.getText();
         if(OTPCheck.equals(OTP)){
             JOptionPane.showMessageDialog(this, "Otp verified Successfully");
+            new AdminDashboard().setVisible(true);
+            this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "Please enter valid OTP!");
             TxtloginOtp.setText("");
