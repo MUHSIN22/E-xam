@@ -84,7 +84,6 @@ public final class StudentAnswerForm extends javax.swing.JFrame {
             st = con.createStatement();
             String query = "SELECT * FROM questions WHERE questionId = "+questionId+" AND subId LIKE '"+examId+"'"; 
             ResultSet rs = st.executeQuery(query);
-            System.err.println(query);
             rs.next();
             questionIn = rs.getString("question");
             optionOneIn = rs.getString("optionOne");

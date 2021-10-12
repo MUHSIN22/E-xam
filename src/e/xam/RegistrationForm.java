@@ -23,7 +23,7 @@ public final class RegistrationForm extends javax.swing.JFrame {
 
     public void connect(){ //Function for connection of database
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/E-xam","root","password");
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
